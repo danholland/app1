@@ -60,6 +60,19 @@ struct mgos_config_i2c {
   int scl_gpio;
 };
 
+struct mgos_config_http {
+  int enable;
+  char *listen_addr;
+  char *document_root;
+  char *ssl_cert;
+  char *ssl_key;
+  char *ssl_ca_cert;
+  char *upload_acl;
+  char *hidden_files;
+  char *auth_domain;
+  char *auth_file;
+};
+
 struct mgos_config_mjs {
   int generate_jsc;
 };
@@ -178,6 +191,7 @@ struct mgos_config {
   char *conf_acl;
   struct mgos_config_i2c i2c;
   struct mgos_config_i2c i2c1;
+  struct mgos_config_http http;
   struct mgos_config_mjs mjs;
   struct mgos_config_rpc rpc;
   struct mgos_config_wifi wifi;
@@ -273,6 +287,28 @@ int         mgos_config_get_i2c1_debug(struct mgos_config *cfg);
 int         mgos_config_get_i2c1_sda_gpio(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_I2C1_SCL_GPIO
 int         mgos_config_get_i2c1_scl_gpio(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP
+const struct mgos_config_http *mgos_config_get_http(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP_ENABLE
+int         mgos_config_get_http_enable(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP_LISTEN_ADDR
+const char *mgos_config_get_http_listen_addr(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP_DOCUMENT_ROOT
+const char *mgos_config_get_http_document_root(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP_SSL_CERT
+const char *mgos_config_get_http_ssl_cert(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP_SSL_KEY
+const char *mgos_config_get_http_ssl_key(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP_SSL_CA_CERT
+const char *mgos_config_get_http_ssl_ca_cert(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP_UPLOAD_ACL
+const char *mgos_config_get_http_upload_acl(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP_HIDDEN_FILES
+const char *mgos_config_get_http_hidden_files(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP_AUTH_DOMAIN
+const char *mgos_config_get_http_auth_domain(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_HTTP_AUTH_FILE
+const char *mgos_config_get_http_auth_file(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_MJS
 const struct mgos_config_mjs *mgos_config_get_mjs(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_MJS_GENERATE_JSC
@@ -509,6 +545,16 @@ void mgos_config_set_i2c1_freq(struct mgos_config *cfg, int         val);
 void mgos_config_set_i2c1_debug(struct mgos_config *cfg, int         val);
 void mgos_config_set_i2c1_sda_gpio(struct mgos_config *cfg, int         val);
 void mgos_config_set_i2c1_scl_gpio(struct mgos_config *cfg, int         val);
+void mgos_config_set_http_enable(struct mgos_config *cfg, int         val);
+void mgos_config_set_http_listen_addr(struct mgos_config *cfg, const char *val);
+void mgos_config_set_http_document_root(struct mgos_config *cfg, const char *val);
+void mgos_config_set_http_ssl_cert(struct mgos_config *cfg, const char *val);
+void mgos_config_set_http_ssl_key(struct mgos_config *cfg, const char *val);
+void mgos_config_set_http_ssl_ca_cert(struct mgos_config *cfg, const char *val);
+void mgos_config_set_http_upload_acl(struct mgos_config *cfg, const char *val);
+void mgos_config_set_http_hidden_files(struct mgos_config *cfg, const char *val);
+void mgos_config_set_http_auth_domain(struct mgos_config *cfg, const char *val);
+void mgos_config_set_http_auth_file(struct mgos_config *cfg, const char *val);
 void mgos_config_set_mjs_generate_jsc(struct mgos_config *cfg, int         val);
 void mgos_config_set_rpc_enable(struct mgos_config *cfg, int         val);
 void mgos_config_set_rpc_max_frame_size(struct mgos_config *cfg, int         val);
@@ -684,6 +730,28 @@ static inline int         mgos_sys_config_get_i2c1_debug(void) { return mgos_con
 static inline int         mgos_sys_config_get_i2c1_sda_gpio(void) { return mgos_config_get_i2c1_sda_gpio(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_I2C1_SCL_GPIO
 static inline int         mgos_sys_config_get_i2c1_scl_gpio(void) { return mgos_config_get_i2c1_scl_gpio(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP
+static inline const struct mgos_config_http *mgos_sys_config_get_http(void) { return mgos_config_get_http(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP_ENABLE
+static inline int         mgos_sys_config_get_http_enable(void) { return mgos_config_get_http_enable(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP_LISTEN_ADDR
+static inline const char *mgos_sys_config_get_http_listen_addr(void) { return mgos_config_get_http_listen_addr(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP_DOCUMENT_ROOT
+static inline const char *mgos_sys_config_get_http_document_root(void) { return mgos_config_get_http_document_root(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP_SSL_CERT
+static inline const char *mgos_sys_config_get_http_ssl_cert(void) { return mgos_config_get_http_ssl_cert(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP_SSL_KEY
+static inline const char *mgos_sys_config_get_http_ssl_key(void) { return mgos_config_get_http_ssl_key(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP_SSL_CA_CERT
+static inline const char *mgos_sys_config_get_http_ssl_ca_cert(void) { return mgos_config_get_http_ssl_ca_cert(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP_UPLOAD_ACL
+static inline const char *mgos_sys_config_get_http_upload_acl(void) { return mgos_config_get_http_upload_acl(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP_HIDDEN_FILES
+static inline const char *mgos_sys_config_get_http_hidden_files(void) { return mgos_config_get_http_hidden_files(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP_AUTH_DOMAIN
+static inline const char *mgos_sys_config_get_http_auth_domain(void) { return mgos_config_get_http_auth_domain(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_HTTP_AUTH_FILE
+static inline const char *mgos_sys_config_get_http_auth_file(void) { return mgos_config_get_http_auth_file(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_MJS
 static inline const struct mgos_config_mjs *mgos_sys_config_get_mjs(void) { return mgos_config_get_mjs(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_MJS_GENERATE_JSC
@@ -920,6 +988,16 @@ static inline void mgos_sys_config_set_i2c1_freq(int         val) { mgos_config_
 static inline void mgos_sys_config_set_i2c1_debug(int         val) { mgos_config_set_i2c1_debug(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_i2c1_sda_gpio(int         val) { mgos_config_set_i2c1_sda_gpio(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_i2c1_scl_gpio(int         val) { mgos_config_set_i2c1_scl_gpio(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_http_enable(int         val) { mgos_config_set_http_enable(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_http_listen_addr(const char *val) { mgos_config_set_http_listen_addr(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_http_document_root(const char *val) { mgos_config_set_http_document_root(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_http_ssl_cert(const char *val) { mgos_config_set_http_ssl_cert(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_http_ssl_key(const char *val) { mgos_config_set_http_ssl_key(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_http_ssl_ca_cert(const char *val) { mgos_config_set_http_ssl_ca_cert(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_http_upload_acl(const char *val) { mgos_config_set_http_upload_acl(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_http_hidden_files(const char *val) { mgos_config_set_http_hidden_files(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_http_auth_domain(const char *val) { mgos_config_set_http_auth_domain(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_http_auth_file(const char *val) { mgos_config_set_http_auth_file(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_mjs_generate_jsc(int         val) { mgos_config_set_mjs_generate_jsc(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_rpc_enable(int         val) { mgos_config_set_rpc_enable(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_rpc_max_frame_size(int         val) { mgos_config_set_rpc_max_frame_size(&mgos_sys_config, val); }

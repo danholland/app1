@@ -7,8 +7,8 @@
 #include <stddef.h>
 #include "mgos_config.h"
 
-const struct mgos_conf_entry mgos_config_schema_[143] = {
-  {.type = CONF_TYPE_OBJECT, .key = "", .offset = 0, .num_desc = 142},
+const struct mgos_conf_entry mgos_config_schema_[154] = {
+  {.type = CONF_TYPE_OBJECT, .key = "", .offset = 0, .num_desc = 153},
   {.type = CONF_TYPE_OBJECT, .key = "debug", .offset = offsetof(struct mgos_config, debug), .num_desc = 8},
   {.type = CONF_TYPE_STRING, .key = "udp_log_addr", .offset = offsetof(struct mgos_config, debug.udp_log_addr)},
   {.type = CONF_TYPE_INT, .key = "level", .offset = offsetof(struct mgos_config, debug.level)},
@@ -51,6 +51,17 @@ const struct mgos_conf_entry mgos_config_schema_[143] = {
   {.type = CONF_TYPE_BOOL, .key = "debug", .offset = offsetof(struct mgos_config, i2c1.debug)},
   {.type = CONF_TYPE_INT, .key = "sda_gpio", .offset = offsetof(struct mgos_config, i2c1.sda_gpio)},
   {.type = CONF_TYPE_INT, .key = "scl_gpio", .offset = offsetof(struct mgos_config, i2c1.scl_gpio)},
+  {.type = CONF_TYPE_OBJECT, .key = "http", .offset = offsetof(struct mgos_config, http), .num_desc = 10},
+  {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, http.enable)},
+  {.type = CONF_TYPE_STRING, .key = "listen_addr", .offset = offsetof(struct mgos_config, http.listen_addr)},
+  {.type = CONF_TYPE_STRING, .key = "document_root", .offset = offsetof(struct mgos_config, http.document_root)},
+  {.type = CONF_TYPE_STRING, .key = "ssl_cert", .offset = offsetof(struct mgos_config, http.ssl_cert)},
+  {.type = CONF_TYPE_STRING, .key = "ssl_key", .offset = offsetof(struct mgos_config, http.ssl_key)},
+  {.type = CONF_TYPE_STRING, .key = "ssl_ca_cert", .offset = offsetof(struct mgos_config, http.ssl_ca_cert)},
+  {.type = CONF_TYPE_STRING, .key = "upload_acl", .offset = offsetof(struct mgos_config, http.upload_acl)},
+  {.type = CONF_TYPE_STRING, .key = "hidden_files", .offset = offsetof(struct mgos_config, http.hidden_files)},
+  {.type = CONF_TYPE_STRING, .key = "auth_domain", .offset = offsetof(struct mgos_config, http.auth_domain)},
+  {.type = CONF_TYPE_STRING, .key = "auth_file", .offset = offsetof(struct mgos_config, http.auth_file)},
   {.type = CONF_TYPE_OBJECT, .key = "mjs", .offset = offsetof(struct mgos_config, mjs), .num_desc = 1},
   {.type = CONF_TYPE_BOOL, .key = "generate_jsc", .offset = offsetof(struct mgos_config, mjs.generate_jsc)},
   {.type = CONF_TYPE_OBJECT, .key = "rpc", .offset = offsetof(struct mgos_config, rpc), .num_desc = 12},
@@ -286,6 +297,39 @@ int         mgos_config_get_i2c1_sda_gpio(struct mgos_config *cfg) {
 }
 int         mgos_config_get_i2c1_scl_gpio(struct mgos_config *cfg) {
   return cfg->i2c1.scl_gpio;
+}
+const struct mgos_config_http *mgos_config_get_http(struct mgos_config *cfg) {
+  return &cfg->http;
+}
+int         mgos_config_get_http_enable(struct mgos_config *cfg) {
+  return cfg->http.enable;
+}
+const char *mgos_config_get_http_listen_addr(struct mgos_config *cfg) {
+  return cfg->http.listen_addr;
+}
+const char *mgos_config_get_http_document_root(struct mgos_config *cfg) {
+  return cfg->http.document_root;
+}
+const char *mgos_config_get_http_ssl_cert(struct mgos_config *cfg) {
+  return cfg->http.ssl_cert;
+}
+const char *mgos_config_get_http_ssl_key(struct mgos_config *cfg) {
+  return cfg->http.ssl_key;
+}
+const char *mgos_config_get_http_ssl_ca_cert(struct mgos_config *cfg) {
+  return cfg->http.ssl_ca_cert;
+}
+const char *mgos_config_get_http_upload_acl(struct mgos_config *cfg) {
+  return cfg->http.upload_acl;
+}
+const char *mgos_config_get_http_hidden_files(struct mgos_config *cfg) {
+  return cfg->http.hidden_files;
+}
+const char *mgos_config_get_http_auth_domain(struct mgos_config *cfg) {
+  return cfg->http.auth_domain;
+}
+const char *mgos_config_get_http_auth_file(struct mgos_config *cfg) {
+  return cfg->http.auth_file;
 }
 const struct mgos_config_mjs *mgos_config_get_mjs(struct mgos_config *cfg) {
   return &cfg->mjs;
@@ -694,6 +738,36 @@ void mgos_config_set_i2c1_sda_gpio(struct mgos_config *cfg, int         val) {
 }
 void mgos_config_set_i2c1_scl_gpio(struct mgos_config *cfg, int         val) {
   cfg->i2c1.scl_gpio = val;
+}
+void mgos_config_set_http_enable(struct mgos_config *cfg, int         val) {
+  cfg->http.enable = val;
+}
+void mgos_config_set_http_listen_addr(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->http.listen_addr, val);
+}
+void mgos_config_set_http_document_root(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->http.document_root, val);
+}
+void mgos_config_set_http_ssl_cert(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->http.ssl_cert, val);
+}
+void mgos_config_set_http_ssl_key(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->http.ssl_key, val);
+}
+void mgos_config_set_http_ssl_ca_cert(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->http.ssl_ca_cert, val);
+}
+void mgos_config_set_http_upload_acl(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->http.upload_acl, val);
+}
+void mgos_config_set_http_hidden_files(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->http.hidden_files, val);
+}
+void mgos_config_set_http_auth_domain(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->http.auth_domain, val);
+}
+void mgos_config_set_http_auth_file(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->http.auth_file, val);
 }
 void mgos_config_set_mjs_generate_jsc(struct mgos_config *cfg, int         val) {
   cfg->mjs.generate_jsc = val;

@@ -26,6 +26,12 @@
   "sda_gpio": 22,
   "scl_gpio": 23
  },
+ "http": {
+  "enable": true,
+  "listen_addr": "80",
+  "document_root": "/",
+  "upload_acl": "*"
+ },
  "mjs": {
   "generate_jsc": true
  },

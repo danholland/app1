@@ -1,2 +1,5 @@
-.vscode/
-build/
+.vscode/*
+build/*
+.travis.yml
+mos.exe
+mos.exe.bak

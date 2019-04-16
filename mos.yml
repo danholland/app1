@@ -7,18 +7,14 @@ libs_version: ${mos.version}
 modules_version: ${mos.version}
 mongoose_os_version: ${mos.version}
 
-
-#define PIN_NUM_MISO 19
-#define PIN_NUM_MOSI 23
-#define PIN_NUM_CLK 18
-#define PIN_NUM_CS 5
+platform: esp32
 
 config_schema:
-- ["sd_spi", "o", {title: "SD SPI settings"}]
-- ["sd_spi.pin_miso", "i", 19, {title: "SD SPI miso"}]
-- ["sd_spi.pin_mosi", "i", 23, {title: "SD SPI mosi"}]
-- ["sd_spi.pin_clk", "i", 18, {title: "SD SPI clk"}]
-- ["sd_spi.pin_cs", "i", 5, {title: "SD SPI cs"}]
+  - ['sd_spi', 'o', { title: 'SD SPI settings' }]
+  - ['sd_spi.pin_miso', 'i', 19, { title: 'SD SPI miso' }]
+  - ['sd_spi.pin_mosi', 'i', 23, { title: 'SD SPI mosi' }]
+  - ['sd_spi.pin_clk', 'i', 18, { title: 'SD SPI clk' }]
+  - ['sd_spi.pin_cs', 'i', 5, { title: 'SD SPI cs' }]
 
 tags:
   - js
@@ -26,13 +22,22 @@ tags:
 sources:
   - src
 
+includes:
+  - include
+
 filesystem:
   - fs
 
 libs:
   - origin: https://github.com/mongoose-os-libs/boards
   - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
   - origin: https://github.com/mongoose-os-libs/mjs
+  - origin: https://github.com/mongoose-os-libs/http-server
+
+cdefs:
+  MG_ENABLE_DNS: 1
+  MG_ENABLE_DNS_SERVER: 1
 
 build_vars:
   ESP_IDF_EXTRA_COMPONENTS: '${build_vars.ESP_IDF_EXTRA_COMPONENTS} fatfs sdmmc sdspi wear_levelling'
