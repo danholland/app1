@@ -94,6 +94,14 @@ void * mgos_mjs_get_config();
 void * mgos_rpc_add_handler(void *, void (*)(void *, char *, char *, void *), void *);
 bool  mgos_rpc_call(char *, char *, char *, void (*)(char *, int, char *, void *), void *);
 bool  mgos_rpc_send_response(void *, char *);
+void  mgos_sd_close();
+void  mgos_sd_delete_file(char *);
+char * mgos_sd_get_mount_point();
+void  mgos_sd_open(char*, bool);
+void  mgos_sd_read_file(char*);
+void  mgos_sd_rename_file(char*,char*);
+void  mgos_sd_write_file(char*, char*);
+void  mgos_sd_write_line(char*, char*);
 int  mgos_set_timer(int,int,void(*)(void *),void *);
 int  mgos_strftime(char *, int, char *, int);
 void  mgos_system_restart_after(int);
@@ -217,6 +225,14 @@ const struct mgos_ffi_export ffi_exports[] = {
   {"mgos_rpc_add_handler", mgos_rpc_add_handler},
   {"mgos_rpc_call", mgos_rpc_call},
   {"mgos_rpc_send_response", mgos_rpc_send_response},
+  {"mgos_sd_close", mgos_sd_close},
+  {"mgos_sd_delete_file", mgos_sd_delete_file},
+  {"mgos_sd_get_mount_point", mgos_sd_get_mount_point},
+  {"mgos_sd_open", mgos_sd_open},
+  {"mgos_sd_read_file", mgos_sd_read_file},
+  {"mgos_sd_rename_file", mgos_sd_rename_file},
+  {"mgos_sd_write_file", mgos_sd_write_file},
+  {"mgos_sd_write_line", mgos_sd_write_line},
   {"mgos_set_timer", mgos_set_timer},
   {"mgos_strftime", mgos_strftime},
   {"mgos_system_restart_after", mgos_system_restart_after},
@@ -254,4 +270,4 @@ const struct mgos_ffi_export ffi_exports[] = {
   {"strdup", strdup},
   {"temprature_sens_read", temprature_sens_read},
 };
-const int ffi_exports_cnt = 121;
+const int ffi_exports_cnt = 129;

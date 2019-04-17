@@ -20,6 +20,7 @@ extern bool mgos_http_server_init(void);
 extern bool mgos_mbedtls_init(void);
 extern bool mgos_mjs_init(void);
 extern bool mgos_rpc_common_init(void);
+extern bool mgos_rpc_service_config_init(void);
 extern bool mgos_rpc_service_fs_init(void);
 extern bool mgos_rpc_uart_init(void);
 
@@ -63,6 +64,9 @@ static const struct lib_descr {
 
     // "rpc-common". deps: [ "core" "http-server" "mongoose" ]
     {.title = "rpc-common", .init = mgos_rpc_common_init},
+
+    // "rpc-service-config". deps: [ "core" "rpc-common" ]
+    {.title = "rpc-service-config", .init = mgos_rpc_service_config_init},
 
     // "rpc-service-fs". deps: [ "core" "rpc-common" ]
     {.title = "rpc-service-fs", .init = mgos_rpc_service_fs_init},
