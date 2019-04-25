@@ -1,7 +1,7 @@
 /* clang-format off */
 /*
  * Generated file - do not edit.
- * Command: /mongoose-os/fw/tools/gen_sys_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_121361911/build/gen/ /mongoose-os/fw/src/mgos_debug_udp_config.yaml /mongoose-os/fw/src/mgos_sys_config.yaml /mongoose-os/fw/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_121361911/build/gen/mos_conf_schema.yml
+ * Command: /mongoose-os/fw/tools/gen_sys_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/build/gen/ /mongoose-os/fw/src/mgos_debug_udp_config.yaml /mongoose-os/fw/src/mgos_sys_config.yaml /mongoose-os/fw/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/build/gen/mos_conf_schema.yml
  */
 
 #pragma once
@@ -129,6 +129,11 @@ struct mgos_config_wifi_sta {
   char *dhcp_hostname;
 };
 
+struct mgos_config_wifi_rpc {
+  int enable;
+  int apsta;
+};
+
 struct mgos_config_wifi {
   struct mgos_config_wifi_ap ap;
   struct mgos_config_wifi_sta sta;
@@ -136,6 +141,7 @@ struct mgos_config_wifi {
   struct mgos_config_wifi_sta sta2;
   int sta_cfg_idx;
   int sta_connect_timeout;
+  struct mgos_config_wifi_rpc rpc;
 };
 
 struct mgos_config_board_led1 {
@@ -461,6 +467,12 @@ const char *mgos_config_get_wifi_sta2_dhcp_hostname(struct mgos_config *cfg);
 int         mgos_config_get_wifi_sta_cfg_idx(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_WIFI_STA_CONNECT_TIMEOUT
 int         mgos_config_get_wifi_sta_connect_timeout(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_WIFI_RPC
+const struct mgos_config_wifi_rpc *mgos_config_get_wifi_rpc(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_WIFI_RPC_ENABLE
+int         mgos_config_get_wifi_rpc_enable(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_WIFI_RPC_APSTA
+int         mgos_config_get_wifi_rpc_apsta(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_BOARD
 const struct mgos_config_board *mgos_config_get_board(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_BOARD_LED1
@@ -623,6 +635,8 @@ void mgos_config_set_wifi_sta2_nameserver(struct mgos_config *cfg, const char *v
 void mgos_config_set_wifi_sta2_dhcp_hostname(struct mgos_config *cfg, const char *val);
 void mgos_config_set_wifi_sta_cfg_idx(struct mgos_config *cfg, int         val);
 void mgos_config_set_wifi_sta_connect_timeout(struct mgos_config *cfg, int         val);
+void mgos_config_set_wifi_rpc_enable(struct mgos_config *cfg, int         val);
+void mgos_config_set_wifi_rpc_apsta(struct mgos_config *cfg, int         val);
 void mgos_config_set_board_led1_pin(struct mgos_config *cfg, int         val);
 void mgos_config_set_board_led1_active_high(struct mgos_config *cfg, int         val);
 void mgos_config_set_board_led2_pin(struct mgos_config *cfg, int         val);
@@ -904,6 +918,12 @@ static inline const char *mgos_sys_config_get_wifi_sta2_dhcp_hostname(void) { re
 static inline int         mgos_sys_config_get_wifi_sta_cfg_idx(void) { return mgos_config_get_wifi_sta_cfg_idx(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_WIFI_STA_CONNECT_TIMEOUT
 static inline int         mgos_sys_config_get_wifi_sta_connect_timeout(void) { return mgos_config_get_wifi_sta_connect_timeout(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_WIFI_RPC
+static inline const struct mgos_config_wifi_rpc *mgos_sys_config_get_wifi_rpc(void) { return mgos_config_get_wifi_rpc(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_WIFI_RPC_ENABLE
+static inline int         mgos_sys_config_get_wifi_rpc_enable(void) { return mgos_config_get_wifi_rpc_enable(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_WIFI_RPC_APSTA
+static inline int         mgos_sys_config_get_wifi_rpc_apsta(void) { return mgos_config_get_wifi_rpc_apsta(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_BOARD
 static inline const struct mgos_config_board *mgos_sys_config_get_board(void) { return mgos_config_get_board(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_BOARD_LED1
@@ -1066,6 +1086,8 @@ static inline void mgos_sys_config_set_wifi_sta2_nameserver(const char *val) { m
 static inline void mgos_sys_config_set_wifi_sta2_dhcp_hostname(const char *val) { mgos_config_set_wifi_sta2_dhcp_hostname(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_wifi_sta_cfg_idx(int         val) { mgos_config_set_wifi_sta_cfg_idx(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_wifi_sta_connect_timeout(int         val) { mgos_config_set_wifi_sta_connect_timeout(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_wifi_rpc_enable(int         val) { mgos_config_set_wifi_rpc_enable(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_wifi_rpc_apsta(int         val) { mgos_config_set_wifi_rpc_apsta(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_board_led1_pin(int         val) { mgos_config_set_board_led1_pin(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_board_led1_active_high(int         val) { mgos_config_set_board_led1_active_high(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_board_led2_pin(int         val) { mgos_config_set_board_led2_pin(&mgos_sys_config, val); }

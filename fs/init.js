@@ -2,6 +2,28 @@ load('api_timer.js');
 load('api_sys.js');
 load('api_uart.js');
 load('api_sd.js');
+/*,
+  Timer.REPEAT,
+  function() {
+    value = !value;
+    UART.write(
+      uartNo,
+      'Hello UART! ' +
+        (value ? 'Tick' : 'Tock') +
+        ' uptime: ' +
+        JSON.stringify(Sys.uptime()) +
+        ' RAM: ' +
+        JSON.stringify(Sys.free_ram()) +
+        (rxAcc.length > 0 ? ' Rx: ' + rxAcc : '') +
+        '\n'
+    );
+    rxAcc = '';
+  },
+  null
+);
+ */
+
+/*
 
 let sdCard = SD.create();
 sdCard.open('/sdcard', false);
@@ -45,24 +67,6 @@ UART.setRxEnabled(uartNo, true);
 
 // Send UART data every second
 Timer.set(
-  1000 /* milliseconds */,
-  Timer.REPEAT,
-  function() {
-    value = !value;
-    UART.write(
-      uartNo,
-      'Hello UART! ' +
-        (value ? 'Tick' : 'Tock') +
-        ' uptime: ' +
-        JSON.stringify(Sys.uptime()) +
-        ' RAM: ' +
-        JSON.stringify(Sys.free_ram()) +
-        (rxAcc.length > 0 ? ' Rx: ' + rxAcc : '') +
-        '\n'
-    );
-    rxAcc = '';
-  },
-  null
+  1000 /* milliseconds */ print(
+  'Ready...'
 );
-
-print('Ready...');

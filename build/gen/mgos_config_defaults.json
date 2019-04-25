@@ -60,7 +60,11 @@
    "trigger_on_gpio": -1,
    "keep_enabled": true
   },
-  "sta_connect_timeout": 30
+  "sta_connect_timeout": 30,
+  "rpc": {
+   "enable": true,
+   "apsta": true
+  }
  },
  "board": {
   "led1": {

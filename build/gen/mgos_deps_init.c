@@ -22,6 +22,7 @@ extern bool mgos_mjs_init(void);
 extern bool mgos_rpc_common_init(void);
 extern bool mgos_rpc_service_config_init(void);
 extern bool mgos_rpc_service_fs_init(void);
+extern bool mgos_rpc_service_wifi_init(void);
 extern bool mgos_rpc_uart_init(void);
 
 static const struct lib_descr {
@@ -70,6 +71,9 @@ static const struct lib_descr {
 
     // "rpc-service-fs". deps: [ "core" "rpc-common" ]
     {.title = "rpc-service-fs", .init = mgos_rpc_service_fs_init},
+
+    // "rpc-service-wifi". deps: [ "core" "rpc-common" "wifi" ]
+    {.title = "rpc-service-wifi", .init = mgos_rpc_service_wifi_init},
 
     // "rpc-uart". deps: [ "core" "rpc-common" ]
     {.title = "rpc-uart", .init = mgos_rpc_uart_init},

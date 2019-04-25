@@ -1,14 +1,14 @@
 /* clang-format off */
 /*
  * Generated file - do not edit.
- * Command: /mongoose-os/fw/tools/gen_sys_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_121361911/build/gen/ /mongoose-os/fw/src/mgos_debug_udp_config.yaml /mongoose-os/fw/src/mgos_sys_config.yaml /mongoose-os/fw/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_121361911/build/gen/mos_conf_schema.yml
+ * Command: /mongoose-os/fw/tools/gen_sys_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/build/gen/ /mongoose-os/fw/src/mgos_debug_udp_config.yaml /mongoose-os/fw/src/mgos_sys_config.yaml /mongoose-os/fw/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/build/gen/mos_conf_schema.yml
  */
 
 #include <stddef.h>
 #include "mgos_config.h"
 
-const struct mgos_conf_entry mgos_config_schema_[154] = {
-  {.type = CONF_TYPE_OBJECT, .key = "", .offset = 0, .num_desc = 153},
+const struct mgos_conf_entry mgos_config_schema_[157] = {
+  {.type = CONF_TYPE_OBJECT, .key = "", .offset = 0, .num_desc = 156},
   {.type = CONF_TYPE_OBJECT, .key = "debug", .offset = offsetof(struct mgos_config, debug), .num_desc = 8},
   {.type = CONF_TYPE_STRING, .key = "udp_log_addr", .offset = offsetof(struct mgos_config, debug.udp_log_addr)},
   {.type = CONF_TYPE_INT, .key = "level", .offset = offsetof(struct mgos_config, debug.level)},
@@ -77,7 +77,7 @@ const struct mgos_conf_entry mgos_config_schema_[154] = {
   {.type = CONF_TYPE_INT, .key = "baud_rate", .offset = offsetof(struct mgos_config, rpc.uart.baud_rate)},
   {.type = CONF_TYPE_INT, .key = "fc_type", .offset = offsetof(struct mgos_config, rpc.uart.fc_type)},
   {.type = CONF_TYPE_STRING, .key = "dst", .offset = offsetof(struct mgos_config, rpc.uart.dst)},
-  {.type = CONF_TYPE_OBJECT, .key = "wifi", .offset = offsetof(struct mgos_config, wifi), .num_desc = 60},
+  {.type = CONF_TYPE_OBJECT, .key = "wifi", .offset = offsetof(struct mgos_config, wifi), .num_desc = 63},
   {.type = CONF_TYPE_OBJECT, .key = "ap", .offset = offsetof(struct mgos_config, wifi.ap), .num_desc = 15},
   {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, wifi.ap.enable)},
   {.type = CONF_TYPE_STRING, .key = "ssid", .offset = offsetof(struct mgos_config, wifi.ap.ssid)},
@@ -138,6 +138,9 @@ const struct mgos_conf_entry mgos_config_schema_[154] = {
   {.type = CONF_TYPE_STRING, .key = "dhcp_hostname", .offset = offsetof(struct mgos_config, wifi.sta2.dhcp_hostname)},
   {.type = CONF_TYPE_INT, .key = "sta_cfg_idx", .offset = offsetof(struct mgos_config, wifi.sta_cfg_idx)},
   {.type = CONF_TYPE_INT, .key = "sta_connect_timeout", .offset = offsetof(struct mgos_config, wifi.sta_connect_timeout)},
+  {.type = CONF_TYPE_OBJECT, .key = "rpc", .offset = offsetof(struct mgos_config, wifi.rpc), .num_desc = 2},
+  {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, wifi.rpc.enable)},
+  {.type = CONF_TYPE_BOOL, .key = "apsta", .offset = offsetof(struct mgos_config, wifi.rpc.apsta)},
   {.type = CONF_TYPE_OBJECT, .key = "board", .offset = offsetof(struct mgos_config, board), .num_desc = 18},
   {.type = CONF_TYPE_OBJECT, .key = "led1", .offset = offsetof(struct mgos_config, board.led1), .num_desc = 2},
   {.type = CONF_TYPE_INT, .key = "pin", .offset = offsetof(struct mgos_config, board.led1.pin)},
@@ -559,6 +562,15 @@ int         mgos_config_get_wifi_sta_cfg_idx(struct mgos_config *cfg) {
 int         mgos_config_get_wifi_sta_connect_timeout(struct mgos_config *cfg) {
   return cfg->wifi.sta_connect_timeout;
 }
+const struct mgos_config_wifi_rpc *mgos_config_get_wifi_rpc(struct mgos_config *cfg) {
+  return &cfg->wifi.rpc;
+}
+int         mgos_config_get_wifi_rpc_enable(struct mgos_config *cfg) {
+  return cfg->wifi.rpc.enable;
+}
+int         mgos_config_get_wifi_rpc_apsta(struct mgos_config *cfg) {
+  return cfg->wifi.rpc.apsta;
+}
 const struct mgos_config_board *mgos_config_get_board(struct mgos_config *cfg) {
   return &cfg->board;
 }
@@ -972,6 +984,12 @@ void mgos_config_set_wifi_sta_cfg_idx(struct mgos_config *cfg, int         val) 
 }
 void mgos_config_set_wifi_sta_connect_timeout(struct mgos_config *cfg, int         val) {
   cfg->wifi.sta_connect_timeout = val;
+}
+void mgos_config_set_wifi_rpc_enable(struct mgos_config *cfg, int         val) {
+  cfg->wifi.rpc.enable = val;
+}
+void mgos_config_set_wifi_rpc_apsta(struct mgos_config *cfg, int         val) {
+  cfg->wifi.rpc.apsta = val;
 }
 void mgos_config_set_board_led1_pin(struct mgos_config *cfg, int         val) {
   cfg->board.led1.pin = val;

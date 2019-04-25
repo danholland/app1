@@ -15,6 +15,13 @@ config_schema:
   - ['sd_spi.pin_mosi', 'i', 23, { title: 'SD SPI mosi' }]
   - ['sd_spi.pin_clk', 'i', 18, { title: 'SD SPI clk' }]
   - ['sd_spi.pin_cs', 'i', 5, { title: 'SD SPI cs' }]
+  - [
+      'wifi.rpc.enable',
+      'b',
+      true,
+      { title: 'Enable additional Wifi RPC handlers' },
+    ]
+  - ['wifi.rpc.apsta', 'b', true, { title: 'Force ESP32 into AP+STA mode' }]
 
 tags:
   - js
@@ -36,10 +43,8 @@ libs:
   - origin: https://github.com/mongoose-os-libs/mjs
   - origin: https://github.com/mongoose-os-libs/http-server
   - origin: https://github.com/mongoose-os-libs/wifi
-
-cdefs:
-  MG_ENABLE_DNS: 1
-  MG_ENABLE_DNS_SERVER: 1
+  - origin: https://github.com/mongoose-os-libs/rpc-service-wifi
 
 build_vars:
   ESP_IDF_EXTRA_COMPONENTS: '${build_vars.ESP_IDF_EXTRA_COMPONENTS} fatfs sdmmc sdspi wear_levelling'
+  MGOS_ROOT_FS_SIZE: 383040
