@@ -1,20 +1,9 @@
 {
  "debug": {
+  "mbedtls_level": 1,
   "level": 2,
-  "factory_reset_gpio": -1,
-  "mbedtls_level": 1
+  "factory_reset_gpio": -1
  },
- "device": {
-  "id": "esp32_??????"
- },
- "sys": {
-  "wdt_timeout": 30,
-  "atca": {
-   "i2c_addr": 96,
-   "ecdh_slots_mask": 12
-  }
- },
- "conf_acl": "*",
  "i2c": {
   "freq": 100000,
   "sda_gpio": 32,
@@ -26,6 +15,17 @@
   "sda_gpio": 22,
   "scl_gpio": 23
  },
+ "sys": {
+  "atca": {
+   "i2c_addr": 96,
+   "ecdh_slots_mask": 12
+  },
+  "wdt_timeout": 30
+ },
+ "device": {
+  "id": "esp32_??????"
+ },
+ "conf_acl": "*",
  "http": {
   "enable": true,
   "listen_addr": "80",

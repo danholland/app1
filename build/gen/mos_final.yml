@@ -7,110 +7,118 @@ platforms:
 - cc3220
 - esp32
 - esp8266
+- rs14100
 - stm32
 - ubuntu
 author: mongoose-os
 description: A JS-enabled demo Mongoose OS firmware
 sources:
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/src/main.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/src/mgos_sd.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/src/mgos_wifi_extras_rpc.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/build/gen/mgos_deps_init.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/i2c/src/mgos_i2c_master.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/i2c/src/esp32/esp32_i2c_master.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/src/mgos_atca.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/atca_cfgs.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/atca_command.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/atca_device.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/atca_iface.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/basic/atca_basic.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/basic/atca_helpers.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/host/atca_host.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/mgos_vfs.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/mgos_vfs_dev.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/mgos_vfs_internal.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/esp32/esp32_fs.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/esp32/esp32_fs_crypt.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/esp32/esp32_vfs_dev_partition.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-lfs/src/mgos_vfs_lfs.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-lfs/src/littlefs/lfs.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-lfs/src/littlefs/lfs_util.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/mgos_vfs_fs_spiffs.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/spiffs/spiffs_cache.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/spiffs/spiffs_check.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/spiffs/spiffs_gc.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/spiffs/spiffs_hydrogen.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/spiffs/spiffs_nucleus.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/core/src/mgos_core.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/http-server/src/mgos_http_server.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/src/mos_mjs.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/modules/mjs/mjs.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/esp32/src/esp32_mjs.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common/src/mg_rpc.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common/src/mg_rpc_channel.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common/src/mg_rpc_channel_http.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common/src/mgos_rpc.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-config/src/mgos_service_config.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-fs/src/mgos_service_filesystem.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/wifi/src/mgos_wifi.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/wifi/src/mjs_wifi.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/wifi/esp32/src/esp32_wifi.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-wifi/src/mgos_rpc_service_wifi.c
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-uart/src/mgos_rpc_channel_uart.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/src/main.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/src/mgos_sd.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/src/mgos_webserver.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/src/mgos_wifi_extras_rpc.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/build/gen/mgos_deps_init.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/freertos/src/mgos_freertos.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/freertos/src/mgos_freertos_core_dump.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/i2c/src/mgos_i2c_master.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/i2c/src/esp32/esp32_i2c_master.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/src/mgos_atca.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/atca_cfgs.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/atca_command.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/atca_device.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/atca_iface.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/basic/atca_basic.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/basic/atca_helpers.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/host/atca_host.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/mgos_vfs.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/mgos_vfs_dev.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/mgos_vfs_internal.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/esp32/esp32_fs.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/esp32/esp32_fs_crypt.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/esp32/esp32_vfs_dev_partition.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-lfs/src/mgos_vfs_lfs.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-lfs/src/littlefs/lfs.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-lfs/src/littlefs/lfs_util.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/mgos_vfs_fs_spiffs.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/spiffs/spiffs_cache.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/spiffs/spiffs_check.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/spiffs/spiffs_gc.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/spiffs/spiffs_hydrogen.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/spiffs/spiffs_nucleus.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/core/src/mgos_core.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/http-server/src/mgos_http_server.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/src/mos_mjs.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/modules/mjs/mjs.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/esp32/src/esp32_mjs.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common/src/mg_rpc.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common/src/mg_rpc_channel.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common/src/mg_rpc_channel_http.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common/src/mgos_rpc.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-config/src/mgos_service_config.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-fs/src/mgos_service_filesystem.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/wifi/src/mgos_wifi.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/wifi/src/mjs_wifi.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/wifi/src/esp32/esp32_wifi.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-wifi/src/mgos_rpc_service_wifi.c
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-uart/src/mgos_rpc_channel_uart.c
 includes:
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/i2c/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mbedtls/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mbedtls/include/esp32
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mbedtls/mbedtls/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/include/esp32
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mongoose/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-lfs/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/include/spiffs
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/include/esp32
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/core/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/core/include/esp32
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/http-server/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-config/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-fs/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/wifi/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/wifi/esp32/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-uart/include
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/freertos/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/freertos/include/esp32
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/i2c/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mbedtls/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mbedtls/include/esp32
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mbedtls/mbedtls/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/include/esp32
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mongoose/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-lfs/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/include/spiffs
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/include/esp32
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/core/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/core/include/esp32
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/http-server/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-config/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-fs/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/wifi/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/wifi/include/esp32
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-uart/include
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/include
 filesystem:
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/api_bitbang.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/api_config.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/api_events.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/api_gpio.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/api_http.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/api_log.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/api_net.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/api_sys.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/api_timer.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/api_uart.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/fs/init.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/modules/mjs/mjs/lib/api_dataview.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/modules/mjs/mjs/lib/api_file.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/modules/mjs/mjs/lib/api_math.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/i2c/mjs_fs/api_i2c.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common/mjs_fs/api_rpc.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/wifi/mjs_fs/api_wifi.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/esp32/fs/api_arch_uart.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/esp32/fs/api_esp32.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/fs/api_sd.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/fs/index.html
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/fs/init.js
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/fs/mini.min.css
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/fs/wifi.html
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/fs/wifi.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/api_bitbang.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/api_config.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/api_events.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/api_gpio.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/api_http.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/api_log.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/api_net.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/api_sys.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/api_timer.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/api_uart.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/fs/init.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/modules/mjs/mjs/lib/api_dataview.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/modules/mjs/mjs/lib/api_file.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/modules/mjs/mjs/lib/api_math.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/i2c/mjs_fs/api_i2c.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common/mjs_fs/api_rpc.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/wifi/mjs_fs/api_wifi.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/esp32/fs/api_arch_uart.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/esp32/fs/api_esp32.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/api_sd.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/index.html
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/init.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/material.min.css.gz
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/material.min.js.gz
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/mini.min.css.gz
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/wifi.html
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/wifi.js
 binary_libs:
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/build/objs/libmbedtls-esp32-2.12.1.a
-- /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/build/objs/libmongoose-esp32-2.12.1.a
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/build/objs/libmbedtls-esp32-2.13.1.a
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/build/objs/libmongoose-esp32-2.13.1.a
 modules:
 - origin: https://github.com/cesanta/mjs
   location: https://github.com/cesanta/mjs
@@ -177,6 +185,60 @@ config_schema:
   - i
   - 1
   - title: mbedTLS debug level
+- - device
+  - o
+  - title: Device settings
+- - device.id
+  - s
+  - title: Device ID
+- - device.license
+  - s
+  - title: License code
+- - debug
+  - o
+  - title: Debug Settings
+- - debug.level
+  - i
+  - 2
+  - title: Debug Level
+- - debug.file_level
+  - s
+  - ""
+  - title: 'Log file level specification: file=level,file=level,...; see cs_log_set_file_level()'
+- - debug.stdout_uart
+  - i
+  - 0
+  - title: STDOUT UART (-1 to disable)
+- - debug.stderr_uart
+  - i
+  - 0
+  - title: STDERR UART (-1 to disable)
+- - debug.factory_reset_gpio
+  - i
+  - -1
+  - title: Factory reset GPIO (low on boot)
+- - debug.mg_mgr_hexdump_file
+  - s
+  - title: File name to hexdump network traffic to. Use '-' for stdout, '--' for stderr.
+- - sys
+  - o
+  - title: System settings
+- - sys.tz_spec
+  - s
+  - ""
+  - title: 'See formats for the TZ env var: "man tzset". Formats like ":/path/to/file"
+      are not supported'
+- - sys.wdt_timeout
+  - i
+  - 30
+  - title: Watchdog timeout (seconds)
+- - sys.pref_ota_lib
+  - s
+  - title: Preferred ota lib, e.g. dash, ota-http-client
+- - conf_acl
+  - s
+  - '*'
+  - title: Conf ACL
 - - http
   - o
   - title: HTTP Server
@@ -492,6 +554,7 @@ build_vars:
      CONFIG_SUPPORT_STATIC_ALLOCATION=y
   MGOS_HAVE_ATCA: "1"
   MGOS_HAVE_CORE: "1"
+  MGOS_HAVE_FREERTOS: "1"
   MGOS_HAVE_HTTP_SERVER: "1"
   MGOS_HAVE_I2C: "1"
   MGOS_HAVE_MBEDTLS: "1"
@@ -508,7 +571,7 @@ build_vars:
   MGOS_HAVE_WIFI: "1"
   MGOS_HAVE_ZZ_BOARDS: "1"
   MGOS_ROOT_FS_SIZE: "383040"
-  MGOS_WIFI_ENABLE_AP_STA: "1"
+  MGOS_WIFI_ENABLE_AP_STA: "0"
 cdefs:
   LFS_NO_DEBUG: "1"
   MBEDTLS_ECP_ATCA: "1"
@@ -527,6 +590,7 @@ cdefs:
   MGOS_ENABLE_WEB_CONFIG: "0"
   MGOS_HAVE_ATCA: "1"
   MGOS_HAVE_CORE: "1"
+  MGOS_HAVE_FREERTOS: "1"
   MGOS_HAVE_HTTP_SERVER: "1"
   MGOS_HAVE_I2C: "1"
   MGOS_HAVE_MBEDTLS: "1"
@@ -545,190 +609,200 @@ cdefs:
   MGOS_WIFI_ENABLE_AP_STA: "1"
 tags:
 - js
-libs_version: 2.12.1
-modules_version: 2.12.1
-mongoose_os_version: 2.12.1
+libs_version: 2.13.1
+modules_version: 2.13.1
+mongoose_os_version: 2.13.1
 manifest_version: "2017-05-18"
 libs_handled:
+- lib:
+    origin: https://github.com/mongoose-os-libs/freertos
+    location: https://github.com/mongoose-os-libs/freertos
+    name: freertos
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/freertos
+  sources:
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/freertos/src/mgos_freertos.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/freertos/src/mgos_freertos_core_dump.c
 - lib:
     origin: https://github.com/mongoose-os-libs/i2c
     location: https://github.com/mongoose-os-libs/i2c
     name: i2c
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/i2c
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/i2c
   init_deps:
   - core
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/i2c/src/mgos_i2c_master.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/i2c/src/esp32/esp32_i2c_master.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/i2c/src/mgos_i2c_master.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/i2c/src/esp32/esp32_i2c_master.c
 - lib:
     origin: https://github.com/mongoose-os-libs/atca
     location: https://github.com/mongoose-os-libs/atca
     name: atca
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca
   init_deps:
   - i2c
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/src/mgos_atca.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/atca_cfgs.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/atca_command.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/atca_device.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/atca_iface.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/basic/atca_basic.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/basic/atca_helpers.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/atca/cryptoauthlib/lib/host/atca_host.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/src/mgos_atca.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/atca_cfgs.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/atca_command.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/atca_device.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/atca_iface.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/basic/atca_basic.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/basic/atca_helpers.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/atca/cryptoauthlib/lib/host/atca_host.c
 - lib:
     origin: https://github.com/mongoose-os-libs/mbedtls
     location: https://github.com/mongoose-os-libs/mbedtls
     name: mbedtls
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mbedtls
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mbedtls
 - lib:
     origin: https://github.com/mongoose-os-libs/vfs-common
     location: https://github.com/mongoose-os-libs/vfs-common
     name: vfs-common
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/mgos_vfs.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/mgos_vfs_dev.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/mgos_vfs_internal.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/esp32/esp32_fs.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/esp32/esp32_fs_crypt.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-common/src/esp32/esp32_vfs_dev_partition.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/mgos_vfs.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/mgos_vfs_dev.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/mgos_vfs_internal.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/esp32/esp32_fs.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/esp32/esp32_fs_crypt.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-common/src/esp32/esp32_vfs_dev_partition.c
 - lib:
     origin: https://github.com/mongoose-os-libs/mongoose
     location: https://github.com/mongoose-os-libs/mongoose
     name: mongoose
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mongoose
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mongoose
 - lib:
     origin: https://github.com/mongoose-os-libs/vfs-fs-lfs
     location: https://github.com/mongoose-os-libs/vfs-fs-lfs
     name: vfs-fs-lfs
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-lfs
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-lfs
   init_deps:
   - vfs-common
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-lfs/src/mgos_vfs_lfs.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-lfs/src/littlefs/lfs.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-lfs/src/littlefs/lfs_util.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-lfs/src/mgos_vfs_lfs.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-lfs/src/littlefs/lfs.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-lfs/src/littlefs/lfs_util.c
 - lib:
     origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
     location: https://github.com/mongoose-os-libs/vfs-fs-spiffs
     name: vfs-fs-spiffs
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs
   init_deps:
   - vfs-common
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/mgos_vfs_fs_spiffs.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/spiffs/spiffs_cache.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/spiffs/spiffs_check.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/spiffs/spiffs_gc.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/spiffs/spiffs_hydrogen.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/vfs-fs-spiffs/src/spiffs/spiffs_nucleus.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/mgos_vfs_fs_spiffs.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/spiffs/spiffs_cache.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/spiffs/spiffs_check.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/spiffs/spiffs_gc.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/spiffs/spiffs_hydrogen.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/vfs-fs-spiffs/src/spiffs/spiffs_nucleus.c
 - lib:
     origin: https://github.com/mongoose-os-libs/core
     location: https://github.com/mongoose-os-libs/core
     name: core
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/core
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/core
   init_deps:
+  - freertos
   - mongoose
   - vfs-common
   - vfs-fs-lfs
   - vfs-fs-spiffs
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/core/src/mgos_core.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/core/src/mgos_core.c
 - lib:
     origin: https://github.com/mongoose-os-libs/http-server
     location: https://github.com/mongoose-os-libs/http-server
     name: http-server
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/http-server
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/http-server
   init_deps:
   - atca
   - core
   - wifi
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/http-server/src/mgos_http_server.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/http-server/src/mgos_http_server.c
 - lib:
     origin: https://github.com/mongoose-os-libs/mjs
     location: https://github.com/mongoose-os-libs/mjs
     name: mjs
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs
   init_deps:
   - core
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/src/mos_mjs.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/modules/mjs/mjs.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/mjs/esp32/src/esp32_mjs.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/src/mos_mjs.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/modules/mjs/mjs.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/mjs/esp32/src/esp32_mjs.c
 - lib:
     origin: https://github.com/mongoose-os-libs/rpc-common
     location: https://github.com/mongoose-os-libs/rpc-common
     name: rpc-common
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common
   init_deps:
   - core
   - http-server
   - mongoose
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common/src/mg_rpc.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common/src/mg_rpc_channel.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common/src/mg_rpc_channel_http.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-common/src/mgos_rpc.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common/src/mg_rpc.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common/src/mg_rpc_channel.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common/src/mg_rpc_channel_http.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-common/src/mgos_rpc.c
 - lib:
     origin: https://github.com/mongoose-os-libs/rpc-service-config
     location: https://github.com/mongoose-os-libs/rpc-service-config
     name: rpc-service-config
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-config
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-config
   init_deps:
   - core
   - rpc-common
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-config/src/mgos_service_config.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-config/src/mgos_service_config.c
 - lib:
     origin: https://github.com/mongoose-os-libs/rpc-service-fs
     location: https://github.com/mongoose-os-libs/rpc-service-fs
     name: rpc-service-fs
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-fs
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-fs
   init_deps:
   - core
   - rpc-common
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-fs/src/mgos_service_filesystem.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-fs/src/mgos_service_filesystem.c
 - lib:
     origin: https://github.com/mongoose-os-libs/wifi
     location: https://github.com/mongoose-os-libs/wifi
     name: wifi
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/wifi
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/wifi
   init_deps:
   - core
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/wifi/src/mgos_wifi.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/wifi/src/mjs_wifi.c
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/wifi/esp32/src/esp32_wifi.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/wifi/src/mgos_wifi.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/wifi/src/mjs_wifi.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/wifi/src/esp32/esp32_wifi.c
 - lib:
     origin: https://github.com/mongoose-os-libs/rpc-service-wifi
     location: https://github.com/mongoose-os-libs/rpc-service-wifi
     name: rpc-service-wifi
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-wifi
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-wifi
   init_deps:
   - core
   - rpc-common
   - wifi
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-service-wifi/src/mgos_rpc_service_wifi.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-service-wifi/src/mgos_rpc_service_wifi.c
 - lib:
     origin: https://github.com/mongoose-os-libs/rpc-uart
     location: https://github.com/mongoose-os-libs/rpc-uart
     name: rpc-uart
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-uart
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-uart
   init_deps:
   - core
   - rpc-common
   sources:
-  - /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/rpc-uart/src/mgos_rpc_channel_uart.c
+  - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/rpc-uart/src/mgos_rpc_channel_uart.c
 - lib:
     origin: https://github.com/mongoose-os-libs/boards
     location: https://github.com/mongoose-os-libs/boards
     name: zz_boards
-  path: /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/deps/boards
+  path: /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/deps/boards
 init_deps:
+- freertos
 - mongoose
 - vfs-common
 - vfs-fs-lfs

@@ -8,6 +8,7 @@
 #include "mgos_app.h"
 
 
+extern bool mgos_freertos_init(void);
 extern bool mgos_mongoose_init(void);
 extern bool mgos_vfs_common_init(void);
 extern bool mgos_vfs_fs_lfs_init(void);
@@ -30,6 +31,9 @@ static const struct lib_descr {
   bool (*init)(void);
 } descrs[] = {
 
+    // "freertos". deps: [ ]
+    {.title = "freertos", .init = mgos_freertos_init},
+
     // "mongoose". deps: [ ]
     {.title = "mongoose", .init = mgos_mongoose_init},
 
@@ -42,7 +46,7 @@ static const struct lib_descr {
     // "vfs-fs-spiffs". deps: [ "vfs-common" ]
     {.title = "vfs-fs-spiffs", .init = mgos_vfs_fs_spiffs_init},
 
-    // "core". deps: [ "mongoose" "vfs-common" "vfs-fs-lfs" "vfs-fs-spiffs" ]
+    // "core". deps: [ "freertos" "mongoose" "vfs-common" "vfs-fs-lfs" "vfs-fs-spiffs" ]
     {.title = "core", .init = mgos_core_init},
 
     // "i2c". deps: [ "core" ]

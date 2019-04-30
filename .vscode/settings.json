@@ -1,4 +1,7 @@
 {
   "mos.port": "COM4",
-  "mos.board": "ESP32"
+  "mos.board": "ESP32",
+  "files.associations": {
+    "stdlib.h": "c"
+  }
 }

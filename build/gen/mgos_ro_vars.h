@@ -1,7 +1,7 @@
 /* clang-format off */
 /*
  * Generated file - do not edit.
- * Command: /mongoose-os/fw/tools/gen_sys_config.py --c_name=mgos_ro_vars --c_global_name=mgos_sys_ro_vars --dest_dir=/data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/build/gen/ /mongoose-os/fw/src/mgos_ro_vars_schema.yaml
+ * Command: /mongoose-os/fw/tools/gen_sys_config.py --c_name=mgos_ro_vars --c_global_name=mgos_sys_ro_vars --dest_dir=/data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/build/gen/ /mongoose-os/fw/src/mgos_ro_vars_schema.yaml
  */
 
 #pragma once

@@ -1,7 +1,7 @@
 /* clang-format off */
 /*
  * Generated file - do not edit.
- * Command: /mongoose-os/fw/tools/gen_sys_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/build/gen/ /mongoose-os/fw/src/mgos_debug_udp_config.yaml /mongoose-os/fw/src/mgos_sys_config.yaml /mongoose-os/fw/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.12.1/apps/app1/esp32/build_contexts/build_ctx_278378886/build/gen/mos_conf_schema.yml
+ * Command: /mongoose-os/fw/tools/gen_sys_config.py --c_name=mgos_config --c_global_name=mgos_sys_config --dest_dir=/data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/build/gen/ /mongoose-os/fw/src/mgos_debug_udp_config.yaml /mongoose-os/fw/platforms/esp32/src/esp32_sys_config.yaml /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/build/gen/mos_conf_schema.yml
  */
 
 #pragma once
@@ -14,26 +14,22 @@ extern "C" {
 
 struct mgos_config_debug {
   char *udp_log_addr;
+  int mbedtls_level;
   int level;
   char *file_level;
   int stdout_uart;
   int stderr_uart;
   int factory_reset_gpio;
   char *mg_mgr_hexdump_file;
-  int mbedtls_level;
 };
 
-struct mgos_config_device {
-  char *id;
-  char *license;
-};
-
-struct mgos_config_sys_mount {
-  char *path;
-  char *dev_type;
-  char *dev_opts;
-  char *fs_type;
-  char *fs_opts;
+struct mgos_config_i2c {
+  int unit_no;
+  int enable;
+  int freq;
+  int debug;
+  int sda_gpio;
+  int scl_gpio;
 };
 
 struct mgos_config_sys_atca {
@@ -44,20 +40,15 @@ struct mgos_config_sys_atca {
 };
 
 struct mgos_config_sys {
-  struct mgos_config_sys_mount mount;
+  struct mgos_config_sys_atca atca;
   char *tz_spec;
   int wdt_timeout;
   char *pref_ota_lib;
-  struct mgos_config_sys_atca atca;
 };
 
-struct mgos_config_i2c {
-  int unit_no;
-  int enable;
-  int freq;
-  int debug;
-  int sda_gpio;
-  int scl_gpio;
+struct mgos_config_device {
+  char *id;
+  char *license;
 };
 
 struct mgos_config_http {
@@ -192,11 +183,11 @@ struct mgos_config_sd_spi {
 
 struct mgos_config {
   struct mgos_config_debug debug;
-  struct mgos_config_device device;
-  struct mgos_config_sys sys;
-  char *conf_acl;
   struct mgos_config_i2c i2c;
   struct mgos_config_i2c i2c1;
+  struct mgos_config_sys sys;
+  struct mgos_config_device device;
+  char *conf_acl;
   struct mgos_config_http http;
   struct mgos_config_mjs mjs;
   struct mgos_config_rpc rpc;
@@ -213,6 +204,8 @@ const struct mgos_conf_entry *mgos_config_schema();
 const struct mgos_config_debug *mgos_config_get_debug(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_DEBUG_UDP_LOG_ADDR
 const char *mgos_config_get_debug_udp_log_addr(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_DEBUG_MBEDTLS_LEVEL
+int         mgos_config_get_debug_mbedtls_level(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_DEBUG_LEVEL
 int         mgos_config_get_debug_level(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_DEBUG_FILE_LEVEL
@@ -225,46 +218,6 @@ int         mgos_config_get_debug_stderr_uart(struct mgos_config *cfg);
 int         mgos_config_get_debug_factory_reset_gpio(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_DEBUG_MG_MGR_HEXDUMP_FILE
 const char *mgos_config_get_debug_mg_mgr_hexdump_file(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_DEBUG_MBEDTLS_LEVEL
-int         mgos_config_get_debug_mbedtls_level(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_DEVICE
-const struct mgos_config_device *mgos_config_get_device(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_DEVICE_ID
-const char *mgos_config_get_device_id(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_DEVICE_LICENSE
-const char *mgos_config_get_device_license(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS
-const struct mgos_config_sys *mgos_config_get_sys(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_MOUNT
-const struct mgos_config_sys_mount *mgos_config_get_sys_mount(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_MOUNT_PATH
-const char *mgos_config_get_sys_mount_path(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_MOUNT_DEV_TYPE
-const char *mgos_config_get_sys_mount_dev_type(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_MOUNT_DEV_OPTS
-const char *mgos_config_get_sys_mount_dev_opts(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_MOUNT_FS_TYPE
-const char *mgos_config_get_sys_mount_fs_type(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_MOUNT_FS_OPTS
-const char *mgos_config_get_sys_mount_fs_opts(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_TZ_SPEC
-const char *mgos_config_get_sys_tz_spec(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_WDT_TIMEOUT
-int         mgos_config_get_sys_wdt_timeout(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_PREF_OTA_LIB
-const char *mgos_config_get_sys_pref_ota_lib(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_ATCA
-const struct mgos_config_sys_atca *mgos_config_get_sys_atca(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_ATCA_ENABLE
-int         mgos_config_get_sys_atca_enable(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_ATCA_I2C_BUS
-int         mgos_config_get_sys_atca_i2c_bus(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_ATCA_I2C_ADDR
-int         mgos_config_get_sys_atca_i2c_addr(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_SYS_ATCA_ECDH_SLOTS_MASK
-int         mgos_config_get_sys_atca_ecdh_slots_mask(struct mgos_config *cfg);
-#define MGOS_CONFIG_HAVE_CONF_ACL
-const char *mgos_config_get_conf_acl(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_I2C
 const struct mgos_config_i2c *mgos_config_get_i2c(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_I2C_UNIT_NO
@@ -293,6 +246,32 @@ int         mgos_config_get_i2c1_debug(struct mgos_config *cfg);
 int         mgos_config_get_i2c1_sda_gpio(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_I2C1_SCL_GPIO
 int         mgos_config_get_i2c1_scl_gpio(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_SYS
+const struct mgos_config_sys *mgos_config_get_sys(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_SYS_ATCA
+const struct mgos_config_sys_atca *mgos_config_get_sys_atca(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_SYS_ATCA_ENABLE
+int         mgos_config_get_sys_atca_enable(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_SYS_ATCA_I2C_BUS
+int         mgos_config_get_sys_atca_i2c_bus(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_SYS_ATCA_I2C_ADDR
+int         mgos_config_get_sys_atca_i2c_addr(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_SYS_ATCA_ECDH_SLOTS_MASK
+int         mgos_config_get_sys_atca_ecdh_slots_mask(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_SYS_TZ_SPEC
+const char *mgos_config_get_sys_tz_spec(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_SYS_WDT_TIMEOUT
+int         mgos_config_get_sys_wdt_timeout(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_SYS_PREF_OTA_LIB
+const char *mgos_config_get_sys_pref_ota_lib(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_DEVICE
+const struct mgos_config_device *mgos_config_get_device(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_DEVICE_ID
+const char *mgos_config_get_device_id(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_DEVICE_LICENSE
+const char *mgos_config_get_device_license(struct mgos_config *cfg);
+#define MGOS_CONFIG_HAVE_CONF_ACL
+const char *mgos_config_get_conf_acl(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_HTTP
 const struct mgos_config_http *mgos_config_get_http(struct mgos_config *cfg);
 #define MGOS_CONFIG_HAVE_HTTP_ENABLE
@@ -523,28 +502,13 @@ int         mgos_config_get_sd_spi_pin_clk(struct mgos_config *cfg);
 int         mgos_config_get_sd_spi_pin_cs(struct mgos_config *cfg);
 
 void mgos_config_set_debug_udp_log_addr(struct mgos_config *cfg, const char *val);
+void mgos_config_set_debug_mbedtls_level(struct mgos_config *cfg, int         val);
 void mgos_config_set_debug_level(struct mgos_config *cfg, int         val);
 void mgos_config_set_debug_file_level(struct mgos_config *cfg, const char *val);
 void mgos_config_set_debug_stdout_uart(struct mgos_config *cfg, int         val);
 void mgos_config_set_debug_stderr_uart(struct mgos_config *cfg, int         val);
 void mgos_config_set_debug_factory_reset_gpio(struct mgos_config *cfg, int         val);
 void mgos_config_set_debug_mg_mgr_hexdump_file(struct mgos_config *cfg, const char *val);
-void mgos_config_set_debug_mbedtls_level(struct mgos_config *cfg, int         val);
-void mgos_config_set_device_id(struct mgos_config *cfg, const char *val);
-void mgos_config_set_device_license(struct mgos_config *cfg, const char *val);
-void mgos_config_set_sys_mount_path(struct mgos_config *cfg, const char *val);
-void mgos_config_set_sys_mount_dev_type(struct mgos_config *cfg, const char *val);
-void mgos_config_set_sys_mount_dev_opts(struct mgos_config *cfg, const char *val);
-void mgos_config_set_sys_mount_fs_type(struct mgos_config *cfg, const char *val);
-void mgos_config_set_sys_mount_fs_opts(struct mgos_config *cfg, const char *val);
-void mgos_config_set_sys_tz_spec(struct mgos_config *cfg, const char *val);
-void mgos_config_set_sys_wdt_timeout(struct mgos_config *cfg, int         val);
-void mgos_config_set_sys_pref_ota_lib(struct mgos_config *cfg, const char *val);
-void mgos_config_set_sys_atca_enable(struct mgos_config *cfg, int         val);
-void mgos_config_set_sys_atca_i2c_bus(struct mgos_config *cfg, int         val);
-void mgos_config_set_sys_atca_i2c_addr(struct mgos_config *cfg, int         val);
-void mgos_config_set_sys_atca_ecdh_slots_mask(struct mgos_config *cfg, int         val);
-void mgos_config_set_conf_acl(struct mgos_config *cfg, const char *val);
 void mgos_config_set_i2c_unit_no(struct mgos_config *cfg, int         val);
 void mgos_config_set_i2c_enable(struct mgos_config *cfg, int         val);
 void mgos_config_set_i2c_freq(struct mgos_config *cfg, int         val);
@@ -557,6 +521,16 @@ void mgos_config_set_i2c1_freq(struct mgos_config *cfg, int         val);
 void mgos_config_set_i2c1_debug(struct mgos_config *cfg, int         val);
 void mgos_config_set_i2c1_sda_gpio(struct mgos_config *cfg, int         val);
 void mgos_config_set_i2c1_scl_gpio(struct mgos_config *cfg, int         val);
+void mgos_config_set_sys_atca_enable(struct mgos_config *cfg, int         val);
+void mgos_config_set_sys_atca_i2c_bus(struct mgos_config *cfg, int         val);
+void mgos_config_set_sys_atca_i2c_addr(struct mgos_config *cfg, int         val);
+void mgos_config_set_sys_atca_ecdh_slots_mask(struct mgos_config *cfg, int         val);
+void mgos_config_set_sys_tz_spec(struct mgos_config *cfg, const char *val);
+void mgos_config_set_sys_wdt_timeout(struct mgos_config *cfg, int         val);
+void mgos_config_set_sys_pref_ota_lib(struct mgos_config *cfg, const char *val);
+void mgos_config_set_device_id(struct mgos_config *cfg, const char *val);
+void mgos_config_set_device_license(struct mgos_config *cfg, const char *val);
+void mgos_config_set_conf_acl(struct mgos_config *cfg, const char *val);
 void mgos_config_set_http_enable(struct mgos_config *cfg, int         val);
 void mgos_config_set_http_listen_addr(struct mgos_config *cfg, const char *val);
 void mgos_config_set_http_document_root(struct mgos_config *cfg, const char *val);
@@ -664,6 +638,8 @@ static inline bool mgos_sys_config_set(const struct mg_str key, const struct mg_
 static inline const struct mgos_config_debug *mgos_sys_config_get_debug(void) { return mgos_config_get_debug(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_DEBUG_UDP_LOG_ADDR
 static inline const char *mgos_sys_config_get_debug_udp_log_addr(void) { return mgos_config_get_debug_udp_log_addr(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_DEBUG_MBEDTLS_LEVEL
+static inline int         mgos_sys_config_get_debug_mbedtls_level(void) { return mgos_config_get_debug_mbedtls_level(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_DEBUG_LEVEL
 static inline int         mgos_sys_config_get_debug_level(void) { return mgos_config_get_debug_level(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_DEBUG_FILE_LEVEL
@@ -676,46 +652,6 @@ static inline int         mgos_sys_config_get_debug_stderr_uart(void) { return m
 static inline int         mgos_sys_config_get_debug_factory_reset_gpio(void) { return mgos_config_get_debug_factory_reset_gpio(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_DEBUG_MG_MGR_HEXDUMP_FILE
 static inline const char *mgos_sys_config_get_debug_mg_mgr_hexdump_file(void) { return mgos_config_get_debug_mg_mgr_hexdump_file(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_DEBUG_MBEDTLS_LEVEL
-static inline int         mgos_sys_config_get_debug_mbedtls_level(void) { return mgos_config_get_debug_mbedtls_level(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_DEVICE
-static inline const struct mgos_config_device *mgos_sys_config_get_device(void) { return mgos_config_get_device(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_DEVICE_ID
-static inline const char *mgos_sys_config_get_device_id(void) { return mgos_config_get_device_id(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_DEVICE_LICENSE
-static inline const char *mgos_sys_config_get_device_license(void) { return mgos_config_get_device_license(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS
-static inline const struct mgos_config_sys *mgos_sys_config_get_sys(void) { return mgos_config_get_sys(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_MOUNT
-static inline const struct mgos_config_sys_mount *mgos_sys_config_get_sys_mount(void) { return mgos_config_get_sys_mount(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_MOUNT_PATH
-static inline const char *mgos_sys_config_get_sys_mount_path(void) { return mgos_config_get_sys_mount_path(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_MOUNT_DEV_TYPE
-static inline const char *mgos_sys_config_get_sys_mount_dev_type(void) { return mgos_config_get_sys_mount_dev_type(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_MOUNT_DEV_OPTS
-static inline const char *mgos_sys_config_get_sys_mount_dev_opts(void) { return mgos_config_get_sys_mount_dev_opts(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_MOUNT_FS_TYPE
-static inline const char *mgos_sys_config_get_sys_mount_fs_type(void) { return mgos_config_get_sys_mount_fs_type(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_MOUNT_FS_OPTS
-static inline const char *mgos_sys_config_get_sys_mount_fs_opts(void) { return mgos_config_get_sys_mount_fs_opts(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_TZ_SPEC
-static inline const char *mgos_sys_config_get_sys_tz_spec(void) { return mgos_config_get_sys_tz_spec(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_WDT_TIMEOUT
-static inline int         mgos_sys_config_get_sys_wdt_timeout(void) { return mgos_config_get_sys_wdt_timeout(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_PREF_OTA_LIB
-static inline const char *mgos_sys_config_get_sys_pref_ota_lib(void) { return mgos_config_get_sys_pref_ota_lib(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_ATCA
-static inline const struct mgos_config_sys_atca *mgos_sys_config_get_sys_atca(void) { return mgos_config_get_sys_atca(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_ATCA_ENABLE
-static inline int         mgos_sys_config_get_sys_atca_enable(void) { return mgos_config_get_sys_atca_enable(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_ATCA_I2C_BUS
-static inline int         mgos_sys_config_get_sys_atca_i2c_bus(void) { return mgos_config_get_sys_atca_i2c_bus(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_ATCA_I2C_ADDR
-static inline int         mgos_sys_config_get_sys_atca_i2c_addr(void) { return mgos_config_get_sys_atca_i2c_addr(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_SYS_ATCA_ECDH_SLOTS_MASK
-static inline int         mgos_sys_config_get_sys_atca_ecdh_slots_mask(void) { return mgos_config_get_sys_atca_ecdh_slots_mask(&mgos_sys_config); }
-#define MGOS_SYS_CONFIG_HAVE_CONF_ACL
-static inline const char *mgos_sys_config_get_conf_acl(void) { return mgos_config_get_conf_acl(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_I2C
 static inline const struct mgos_config_i2c *mgos_sys_config_get_i2c(void) { return mgos_config_get_i2c(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_I2C_UNIT_NO
@@ -744,6 +680,32 @@ static inline int         mgos_sys_config_get_i2c1_debug(void) { return mgos_con
 static inline int         mgos_sys_config_get_i2c1_sda_gpio(void) { return mgos_config_get_i2c1_sda_gpio(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_I2C1_SCL_GPIO
 static inline int         mgos_sys_config_get_i2c1_scl_gpio(void) { return mgos_config_get_i2c1_scl_gpio(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_SYS
+static inline const struct mgos_config_sys *mgos_sys_config_get_sys(void) { return mgos_config_get_sys(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_SYS_ATCA
+static inline const struct mgos_config_sys_atca *mgos_sys_config_get_sys_atca(void) { return mgos_config_get_sys_atca(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_SYS_ATCA_ENABLE
+static inline int         mgos_sys_config_get_sys_atca_enable(void) { return mgos_config_get_sys_atca_enable(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_SYS_ATCA_I2C_BUS
+static inline int         mgos_sys_config_get_sys_atca_i2c_bus(void) { return mgos_config_get_sys_atca_i2c_bus(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_SYS_ATCA_I2C_ADDR
+static inline int         mgos_sys_config_get_sys_atca_i2c_addr(void) { return mgos_config_get_sys_atca_i2c_addr(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_SYS_ATCA_ECDH_SLOTS_MASK
+static inline int         mgos_sys_config_get_sys_atca_ecdh_slots_mask(void) { return mgos_config_get_sys_atca_ecdh_slots_mask(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_SYS_TZ_SPEC
+static inline const char *mgos_sys_config_get_sys_tz_spec(void) { return mgos_config_get_sys_tz_spec(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_SYS_WDT_TIMEOUT
+static inline int         mgos_sys_config_get_sys_wdt_timeout(void) { return mgos_config_get_sys_wdt_timeout(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_SYS_PREF_OTA_LIB
+static inline const char *mgos_sys_config_get_sys_pref_ota_lib(void) { return mgos_config_get_sys_pref_ota_lib(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_DEVICE
+static inline const struct mgos_config_device *mgos_sys_config_get_device(void) { return mgos_config_get_device(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_DEVICE_ID
+static inline const char *mgos_sys_config_get_device_id(void) { return mgos_config_get_device_id(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_DEVICE_LICENSE
+static inline const char *mgos_sys_config_get_device_license(void) { return mgos_config_get_device_license(&mgos_sys_config); }
+#define MGOS_SYS_CONFIG_HAVE_CONF_ACL
+static inline const char *mgos_sys_config_get_conf_acl(void) { return mgos_config_get_conf_acl(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_HTTP
 static inline const struct mgos_config_http *mgos_sys_config_get_http(void) { return mgos_config_get_http(&mgos_sys_config); }
 #define MGOS_SYS_CONFIG_HAVE_HTTP_ENABLE
@@ -974,28 +936,13 @@ static inline int         mgos_sys_config_get_sd_spi_pin_clk(void) { return mgos
 static inline int         mgos_sys_config_get_sd_spi_pin_cs(void) { return mgos_config_get_sd_spi_pin_cs(&mgos_sys_config); }
 
 static inline void mgos_sys_config_set_debug_udp_log_addr(const char *val) { mgos_config_set_debug_udp_log_addr(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_debug_mbedtls_level(int         val) { mgos_config_set_debug_mbedtls_level(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_debug_level(int         val) { mgos_config_set_debug_level(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_debug_file_level(const char *val) { mgos_config_set_debug_file_level(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_debug_stdout_uart(int         val) { mgos_config_set_debug_stdout_uart(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_debug_stderr_uart(int         val) { mgos_config_set_debug_stderr_uart(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_debug_factory_reset_gpio(int         val) { mgos_config_set_debug_factory_reset_gpio(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_debug_mg_mgr_hexdump_file(const char *val) { mgos_config_set_debug_mg_mgr_hexdump_file(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_debug_mbedtls_level(int         val) { mgos_config_set_debug_mbedtls_level(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_device_id(const char *val) { mgos_config_set_device_id(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_device_license(const char *val) { mgos_config_set_device_license(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_mount_path(const char *val) { mgos_config_set_sys_mount_path(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_mount_dev_type(const char *val) { mgos_config_set_sys_mount_dev_type(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_mount_dev_opts(const char *val) { mgos_config_set_sys_mount_dev_opts(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_mount_fs_type(const char *val) { mgos_config_set_sys_mount_fs_type(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_mount_fs_opts(const char *val) { mgos_config_set_sys_mount_fs_opts(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_tz_spec(const char *val) { mgos_config_set_sys_tz_spec(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_wdt_timeout(int         val) { mgos_config_set_sys_wdt_timeout(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_pref_ota_lib(const char *val) { mgos_config_set_sys_pref_ota_lib(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_atca_enable(int         val) { mgos_config_set_sys_atca_enable(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_atca_i2c_bus(int         val) { mgos_config_set_sys_atca_i2c_bus(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_atca_i2c_addr(int         val) { mgos_config_set_sys_atca_i2c_addr(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_sys_atca_ecdh_slots_mask(int         val) { mgos_config_set_sys_atca_ecdh_slots_mask(&mgos_sys_config, val); }
-static inline void mgos_sys_config_set_conf_acl(const char *val) { mgos_config_set_conf_acl(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_i2c_unit_no(int         val) { mgos_config_set_i2c_unit_no(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_i2c_enable(int         val) { mgos_config_set_i2c_enable(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_i2c_freq(int         val) { mgos_config_set_i2c_freq(&mgos_sys_config, val); }
@@ -1008,6 +955,16 @@ static inline void mgos_sys_config_set_i2c1_freq(int         val) { mgos_config_
 static inline void mgos_sys_config_set_i2c1_debug(int         val) { mgos_config_set_i2c1_debug(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_i2c1_sda_gpio(int         val) { mgos_config_set_i2c1_sda_gpio(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_i2c1_scl_gpio(int         val) { mgos_config_set_i2c1_scl_gpio(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_sys_atca_enable(int         val) { mgos_config_set_sys_atca_enable(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_sys_atca_i2c_bus(int         val) { mgos_config_set_sys_atca_i2c_bus(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_sys_atca_i2c_addr(int         val) { mgos_config_set_sys_atca_i2c_addr(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_sys_atca_ecdh_slots_mask(int         val) { mgos_config_set_sys_atca_ecdh_slots_mask(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_sys_tz_spec(const char *val) { mgos_config_set_sys_tz_spec(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_sys_wdt_timeout(int         val) { mgos_config_set_sys_wdt_timeout(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_sys_pref_ota_lib(const char *val) { mgos_config_set_sys_pref_ota_lib(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_device_id(const char *val) { mgos_config_set_device_id(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_device_license(const char *val) { mgos_config_set_device_license(&mgos_sys_config, val); }
+static inline void mgos_sys_config_set_conf_acl(const char *val) { mgos_config_set_conf_acl(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_http_enable(int         val) { mgos_config_set_http_enable(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_http_listen_addr(const char *val) { mgos_config_set_http_listen_addr(&mgos_sys_config, val); }
 static inline void mgos_sys_config_set_http_document_root(const char *val) { mgos_config_set_http_document_root(&mgos_sys_config, val); }

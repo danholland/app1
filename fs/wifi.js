@@ -144,11 +144,10 @@ var Wifi = {
         }
         return;
       }
-      console.log('responseText', httpRequest.responseText);
-      var httpResponse = JSON.parse(httpRequest.responseText);
-      console.log('httpResponse', httpResponse);
+      // var httpResponse = JSON.parse(httpRequest.responseText);
+      // console.log('httpResponse', httpResponse);
 
-      callback(httpResponse);
+      callback(JSON.parse(httpRequest.responseText));
     };
     httpRequest.open(method, '/rpc/' + rpc);
     httpRequest.setRequestHeader('Content-Type', 'application/json');
@@ -158,6 +157,8 @@ var Wifi = {
     console.log(network);
     var userwrapper = document.getElementById('wuserwrapper');
     var passwrapper = document.getElementById('wpasswrapper');
+    document.getElementById('wuser').value = '';
+    document.getElementById('wpass').value = '';
     userwrapper.style.display = 'none';
     passwrapper.style.display = 'none';
     Wifi.Buttons._all.test.disable();
@@ -243,6 +244,30 @@ var Wifi = {
       return;
     }
     Wifi.Buttons.disableAll();
+  },
+  test: function() {
+    var ssid = document.getElementById('networks').value;
+    var user = document.getElementById('wuser').value;
+    var pass = document.getElementById('wpass').value;
+    if (!ssid || ssid.length < 1) {
+      Wifi.Info.hide();
+      Wifi.Error.show('You must select a network');
+      return;
+    }
+    if (!user || user.length < 1) {
+      user = '';
+    }
+    Wifi.Buttons.disableAll();
+    Wifi.rpcCall(
+      'POST',
+      'Wifi.Test',
+      'Attempting to connect...',
+      { ssid: ssid, pass: '$uperHer0e$', user: user },
+      function(resp) {
+        console.log(resp);
+        return;
+      }
+    );
   }
 };
 
