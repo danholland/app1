@@ -4,6 +4,7 @@
 #include "mgos_rpc.h"
 #include "mgos_event.h"
 #include "mgos_config.h"
+#include "mgos_timers.h"
 #include "mgos_wifi.h"
 #include "mgos_wifi_extras_rpc.h"
 
@@ -15,11 +16,19 @@ char *s_ssid = NULL;
 char *s_pass = NULL;
 bool s_wifi_rpc_init = false;
 static int s_connection_retries = 0;
-
+bool s_timedout = false;
 static struct mgos_config_wifi_sta *sp_test_sta_vals = NULL;
-
+static int check_counter = 0;
 static void remove_event_handlers(void);
 static void add_event_handlers(void);
+
+static void connected_cb()
+{
+  char *connectedto = mgos_wifi_get_connected_ssid();
+
+  LOG(LL_INFO, ("WiFi Setup -- Connected to SSID %s", connectedto));
+  free(connectedto);
+}
 
 static void reconnect(int ev, void *ev_data, void *userdata)
 {
@@ -42,7 +51,35 @@ static void ip_acquired(int ev, void *ev_data, void *userdata)
   LOG(LL_INFO, ("WiFi Setup -- IP Acquired from SSID %s", connectedto));
   free(connectedto);
   remove_event_handlers();
+  return;
+}
 
+static void check_connected_cb(void *arg)
+{
+
+  struct mg_rpc_request_info *ri = (struct mg_rpc_request_info *)arg;
+
+  char *connectedto = mgos_wifi_get_connected_ssid();
+  if (strlen(connectedto) > 0)
+  {
+    check_counter = 0;
+    LOG(LL_INFO, ("Connected!!"));
+    //mg_rpc_send_responsef(ri, "{  result: %B }", true);
+  }
+  else
+  {
+    if (check_counter > 2)
+    {
+      LOG(LL_INFO, ("Connection timeout!!"));
+      //mg_rpc_send_responsef(ri, "{ result: %B }", false);
+    }
+    check_counter++;
+  }
+  free(connectedto);
+}
+
+static void mgos_wifi_save()
+{
   int sta_index = 0;
 
   if (sp_test_sta_vals != NULL)
@@ -109,22 +146,28 @@ static void ip_acquired(int ev, void *ev_data, void *userdata)
       }
     }
   }
+  return;
 }
 
 static void add_event_handlers(void)
 {
   mgos_event_add_handler(MGOS_WIFI_EV_STA_DISCONNECTED, reconnect, NULL);
+  mgos_event_add_handler(MGOS_WIFI_EV_STA_CONNECTED, connected_cb, NULL);
   mgos_event_add_handler(MGOS_WIFI_EV_STA_IP_ACQUIRED, ip_acquired, NULL);
 }
 
 static void remove_event_handlers(void)
 {
   mgos_event_remove_handler(MGOS_WIFI_EV_STA_DISCONNECTED, reconnect, NULL);
+  mgos_event_remove_handler(MGOS_WIFI_EV_STA_CONNECTED, connected_cb, NULL);
   mgos_event_remove_handler(MGOS_WIFI_EV_STA_IP_ACQUIRED, ip_acquired, NULL);
 }
 
-bool mgos_wifi_setup_test(char *ssid, char *user, char *pass, void *userdata)
+void mgos_wifi_setup_test(char *ssid, char *user, char *pass, void *userdata)
 {
+
+  //struct mg_rpc_request_info *ri = (struct mg_rpc_request_info *)userdata;
+
   if (mgos_conf_str_empty(ssid))
   {
     return false;
@@ -144,17 +187,19 @@ bool mgos_wifi_setup_test(char *ssid, char *user, char *pass, void *userdata)
   sp_test_sta_vals->ca_cert = "";
   LOG(LL_INFO, ("Testing Wifi setup, SSID: %s, USER: %s, PASS: %s", ssid, user, pass));
 
+  remove_event_handlers();
+
   mgos_wifi_disconnect();
   if (!mgos_wifi_setup_sta(sp_test_sta_vals))
   {
+    //mg_rpc_send_errorf(ri, 400, "STA Config invalid");
     return false;
   }
   add_event_handlers();
+
   mgos_wifi_connect();
-  char *status = mgos_wifi_get_status_str();
-  LOG(LL_INFO, ("STA Status: %s", status));
-  free(status);
-  return false;
+
+  mgos_set_timer(1000, MGOS_TIMER_REPEAT, check_connected_cb, NULL);
 }
 
 static void mgos_wifi_test_rpc_handler(struct mg_rpc_request_info *ri, void *cb_arg,
@@ -178,8 +223,7 @@ static void mgos_wifi_test_rpc_handler(struct mg_rpc_request_info *ri, void *cb_
   }
 
   LOG(LL_INFO, ("Wifi.Test RPC Handler ssid: %s, user: %s, pass: %s", ssid, user, pass));
-  bool result = mgos_wifi_setup_test(ssid, user, pass, NULL);
-  mg_rpc_send_responsef(ri, "{ ssid: %Q, user: %Q, pass: %Q, result: %B }", ssid, user, pass, result);
+  mgos_wifi_setup_test(ssid, user, pass, NULL);
 
   free(ssid);
   free(pass);
@@ -187,11 +231,6 @@ static void mgos_wifi_test_rpc_handler(struct mg_rpc_request_info *ri, void *cb_
 
   (void)cb_arg;
   (void)fi;
-}
-
-static void mgos_wifi_save()
-{
-  return;
 }
 
 bool mgos_wifi_rpc_force_apsta(void)

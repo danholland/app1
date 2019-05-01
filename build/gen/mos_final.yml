@@ -113,9 +113,12 @@ filesystem:
 - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/init.js
 - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/material.min.css.gz
 - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/material.min.js.gz
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/mini.css
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/mini.css.gz
 - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/mini.min.css.gz
 - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/wifi.html
 - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/wifi.js
+- /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/fs/wifi.js.gz
 binary_libs:
 - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/build/objs/libmbedtls-esp32-2.13.1.a
 - /data/fwbuild-volumes/2.13.1/apps/app1/esp32/build_contexts/build_ctx_793637636/build/objs/libmongoose-esp32-2.13.1.a

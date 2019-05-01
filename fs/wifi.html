@@ -4,44 +4,39 @@
     <meta charset="utf-8" />
     <title>Configure Wifi Settings</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/mini.min.css.gz" />
-    <script src="wifi.js"></script>
-    <link rel="stylesheet" href="./material.min.css.gz" />
-    <script src="./material.min.js.gz"></script>
+    <link rel="stylesheet" href="/mini.css.gz" />
+    <script src="wifi.js.gz"></script>
   </head>
   <body>
-    <div class="container">
-      <div class="row cols-sm-12 cols-md-6">
-        <h2>Configure Wifi settings</h2>
-      </div>
-      <div class="row cols-sm-12 cols-md-6">
-        <div id="scanning" class="card fluid info" style="display: none;">
-          <div class="section">
-            <span class="icon- spinner tertiary"></span>
-            <span>Scanning for wireless networks...</span>
-          </div>
-        </div>
-        <div id="error" class="card fluid error" style="display: none;"></div>
-        <div id="info" class="card fluid info" style="display: none;"></div>
-      </div>
-      <div class="row">
-        <div id="networkswrapper" class="col-sm-12 col-md-6">
-          <fieldset>
-            <legend>Select a wireless network</legend>
-            <label for="networks">Networks</label>
-            <select name="networks" id="networks" disabled>
-              <option value="-1" disabled="disabled" selected="selected">
-                Waiting for networks...
-              </option>
-            </select>
-          </fieldset>
+    <header>
+      <h5>Configure Wifi settings</h5>
+    </header>
+    <div id="wifiprogress" class="progress">
+      <div class="indeterminate"></div>
+    </div>
+    <div class="row cols-sm-12 cols-md-6">
+      <div id="scanning" class="card fluid info" style="display: none;">
+        <div class="section">
+          <p>Scanning for wireless networks...</p>
         </div>
       </div>
-      <div
-        class="row cols-sm-12 cols-md-6"
-        id="credswrapper"
-        style="display: none;"
-      >
+      <div id="error" class="card fluid error" style="display: none;"></div>
+      <div id="info" class="card fluid info" style="display: none;"></div>
+    </div>
+
+    <div class="row">
+      <div id="networkswrapper" class="col-sm-12 col-md-6">
+        <div class="list-view">
+          <ul id="networklist"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row cols-sm-4">
+      <div><button class="primary" id="scan">Scan</button></div>
+    </div>
+    <div class="modal" id="credswrapper">
+      <div class="modal-content">
         <fieldset>
           <legend>Enter credentials</legend>
           <div id="wuserwrapper">
@@ -53,11 +48,10 @@
             <input type="password" name="wpass" id="wpass" autocomplete="off" />
           </div>
         </fieldset>
-      </div>
-      <div class="row cols-sm-4">
-        <div><button class="primary" id="scan">Scan</button></div>
-        <div><button id="test">Test</button></div>
-        <div><button class="tertiary" id="save">Save</button></div>
+        <div class="row">
+          <div><button id="test">Test</button></div>
+          <div><button class="tertiary" id="save">Save</button></div>
+        </div>
       </div>
     </div>
   </body>

@@ -1,5 +1,21 @@
+var locked = [
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsLW9wYWNpdHk9Ii4zIiBkPSJNMTIuMDEgMjEuNDlMMjMuNjQgN2MtLjQ1LS4zNC00LjkzLTQtMTEuNjQtNEM1LjI4IDMgLjgxIDYuNjYuMzYgN2wxMS42MyAxNC40OS4wMS4wMS4wMS0uMDF6Ii8+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==',
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDBWMHoiLz48cGF0aCBkPSJNMjMgMTZ2LTEuNWMwLTEuNC0xLjEtMi41LTIuNS0yLjVTMTggMTMuMSAxOCAxNC41VjE2Yy0uNSAwLTEgLjUtMSAxdjRjMCAuNS41IDEgMSAxaDVjLjUgMCAxLS41IDEtMXYtNGMwLS41LS41LTEtMS0xem0tMSAwaC0zdi0xLjVjMC0uOC43LTEuNSAxLjUtMS41czEuNS43IDEuNSAxLjVWMTZ6Ii8+PHBhdGggZD0iTTE1LjUgMTQuNWMwLTIuOCAyLjItNSA1LTUgLjQgMCAuNyAwIDEgLjFMMjMuNiA3Yy0uNC0uMy00LjktNC0xMS42LTRDNS4zIDMgLjggNi43LjQgN0wxMiAyMS41bDMuNS00LjN2LTIuN3oiIG9wYWNpdHk9Ii4zIi8+PHBhdGggZD0iTTYuNyAxNC45bDUuMyA2LjYgMy41LTQuM3YtMi42YzAtLjIgMC0uNS4xLS43LS45LS41LTIuMi0uOS0zLjYtLjktMyAwLTUuMSAxLjctNS4zIDEuOXoiLz48L3N2Zz4=',
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDBWMHoiLz48cGF0aCBkPSJNMjMgMTZ2LTEuNWMwLTEuNC0xLjEtMi41LTIuNS0yLjVTMTggMTMuMSAxOCAxNC41VjE2Yy0uNSAwLTEgLjUtMSAxdjRjMCAuNS41IDEgMSAxaDVjLjUgMCAxLS41IDEtMXYtNGMwLS41LS41LTEtMS0xem0tMSAwaC0zdi0xLjVjMC0uOC43LTEuNSAxLjUtMS41czEuNS43IDEuNSAxLjVWMTZ6Ii8+PHBhdGggZD0iTTE1LjUgMTQuNWMwLTIuOCAyLjItNSA1LTUgLjQgMCAuNyAwIDEgLjFMMjMuNiA3Yy0uNC0uMy00LjktNC0xMS42LTRDNS4zIDMgLjggNi43LjQgN0wxMiAyMS41bDMuNS00LjN2LTIuN3oiIG9wYWNpdHk9Ii4zIi8+PHBhdGggZD0iTTQuOCAxMi41bDcuMiA5IDMuNS00LjR2LTIuNmMwLTEuMy41LTIuNSAxLjQtMy40QzE1LjYgMTAuNSAxNCAxMCAxMiAxMGMtNC4xIDAtNi44IDIuMi03LjIgMi41eiIvPjwvc3ZnPg==',
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBvcGFjaXR5PSIuMyIgZD0iTTEyIDNDNS4zIDMgLjggNi43LjQgN2wzLjIgMy45TDEyIDIxLjVsMy41LTQuM3YtMi42YzAtMi4yIDEuNC00IDMuMy00LjcuMy0uMS41LS4yLjgtLjIuMy0uMS42LS4xLjktLjEuNCAwIC43IDAgMSAuMUwyMy42IDdjLS40LS4zLTQuOS00LTExLjYtNHoiLz48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDBWMHoiLz48cGF0aCBkPSJNMjMgMTZ2LTEuNWMwLTEuNC0xLjEtMi41LTIuNS0yLjVTMTggMTMuMSAxOCAxNC41VjE2Yy0uNSAwLTEgLjUtMSAxdjRjMCAuNS41IDEgMSAxaDVjLjUgMCAxLS41IDEtMXYtNGMwLS41LS41LTEtMS0xem0tMSAwaC0zdi0xLjVjMC0uOC43LTEuNSAxLjUtMS41czEuNS43IDEuNSAxLjVWMTZ6bS0xMCA1LjVsMy41LTQuM3YtMi42YzAtMi4yIDEuNC00IDMuMy00LjdDMTcuMyA5IDE0LjkgOCAxMiA4Yy00LjggMC04IDIuNi04LjUgMi45Ii8+PC9zdmc+',
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDBWMHoiLz48cGF0aCBkPSJNMjMgMTZ2LTEuNWMwLTEuNC0xLjEtMi41LTIuNS0yLjVTMTggMTMuMSAxOCAxNC41VjE2Yy0uNSAwLTEgLjUtMSAxdjRjMCAuNS41IDEgMSAxaDVjLjUgMCAxLS41IDEtMXYtNGMwLS41LS41LTEtMS0xem0tMSAwaC0zdi0xLjVjMC0uOC43LTEuNSAxLjUtMS41czEuNS43IDEuNSAxLjVWMTZ6bS02LjUtMS41YzAtMi44IDIuMi01IDUtNSAuNCAwIC43IDAgMSAuMUwyMy42IDdjLS40LS4zLTQuOS00LTExLjYtNEM1LjMgMyAuOCA2LjcuNCA3TDEyIDIxLjVsMy41LTQuNHYtMi42eiIvPjwvc3ZnPg=='
+];
+var unlocked = [
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsLW9wYWNpdHk9Ii4zIiBkPSJNMTIuMDEgMjEuNDlMMjMuNjQgN2MtLjQ1LS4zNC00LjkzLTQtMTEuNjQtNEM1LjI4IDMgLjgxIDYuNjYuMzYgN2wxMS42MyAxNC40OS4wMS4wMS4wMS0uMDF6Ii8+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==',
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsLW9wYWNpdHk9Ii4zIiBkPSJNMTIuMDEgMjEuNDlMMjMuNjQgN2MtLjQ1LS4zNC00LjkzLTQtMTEuNjQtNEM1LjI4IDMgLjgxIDYuNjYuMzYgN2wxMS42MyAxNC40OS4wMS4wMS4wMS0uMDF6Ii8+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik02LjY3IDE0Ljg2TDEyIDIxLjQ5di4wMWwuMDEtLjAxIDUuMzMtNi42M0MxNy4wNiAxNC42NSAxNS4wMyAxMyAxMiAxM3MtNS4wNiAxLjY1LTUuMzMgMS44NnoiLz48L3N2Zz4=',
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsLW9wYWNpdHk9Ii4zIiBkPSJNMTIuMDEgMjEuNDlMMjMuNjQgN2MtLjQ1LS4zNC00LjkzLTQtMTEuNjQtNEM1LjI4IDMgLjgxIDYuNjYuMzYgN2wxMS42MyAxNC40OS4wMS4wMS4wMS0uMDF6Ii8+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik00Ljc5IDEyLjUybDcuMiA4Ljk4SDEybC4wMS0uMDEgNy4yLTguOThDMTguODUgMTIuMjQgMTYuMSAxMCAxMiAxMHMtNi44NSAyLjI0LTcuMjEgMi41MnoiLz48L3N2Zz4=',
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsLW9wYWNpdHk9Ii4zIiBkPSJNMTIuMDEgMjEuNDlMMjMuNjQgN2MtLjQ1LS4zNC00LjkzLTQtMTEuNjQtNEM1LjI4IDMgLjgxIDYuNjYuMzYgN2wxMS42MyAxNC40OS4wMS4wMS4wMS0uMDF6Ii8+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0zLjUzIDEwLjk1bDguNDYgMTAuNTQuMDEuMDEuMDEtLjAxIDguNDYtMTAuNTRDMjAuMDQgMTAuNjIgMTYuODEgOCAxMiA4Yy00LjgxIDAtOC4wNCAyLjYyLTguNDcgMi45NXoiLz48L3N2Zz4=',
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIuMDEgMjEuNDlMMjMuNjQgN2MtLjQ1LS4zNC00LjkzLTQtMTEuNjQtNEM1LjI4IDMgLjgxIDYuNjYuMzYgN2wxMS42MyAxNC40OS4wMS4wMS4wMS0uMDF6Ii8+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg=='
+];
+
 var Wifi = {
   SSIDs: [],
+  currentSSID: null,
   Networks: [],
   _msg_proto: function(elID) {
     return {
@@ -22,16 +38,13 @@ var Wifi = {
     Wifi.Error = new Wifi._msg_proto('error');
     Wifi.Scanning = new Wifi._msg_proto('scanning');
     Wifi.Creds = new Wifi._msg_proto('credswrapper');
-
-    document.getElementById('networks').onchange = function(a) {
-      var s = this.value || this.options[this.selectedIndex].value;
-      Wifi.selectNetwork(s);
-    };
-
-    // Stupid iPhones @see https://stackoverflow.com/questions/8004227/ios-select-onchange-not-firing
-    document.getElementById('networks').onblur = function(a) {
-      var s = this.value || this.options[this.selectedIndex].value;
-      Wifi.selectNetwork(s);
+    Wifi.List = new Wifi._msg_proto('networkswrapper');
+    Wifi.Progress = new Wifi._msg_proto('wifiprogress');
+    // Modal close functionality
+    document.onclick = function(e) {
+      if (e.target == Wifi.Creds.$el) {
+        Wifi.Creds.hide();
+      }
     };
 
     Wifi.scan();
@@ -40,8 +53,10 @@ var Wifi = {
     Wifi.Info.hide();
     Wifi.Error.hide();
     Wifi.Creds.hide();
+    Wifi.List.hide();
     Wifi.Buttons.disableAll();
     Wifi.Scanning.show();
+    Wifi.Progress.show();
     Wifi.rpcCall(
       'POST',
       'Wifi.Scan',
@@ -51,24 +66,18 @@ var Wifi = {
         if (resp && resp.length > 0) {
           Wifi.SSIDs = [];
           Wifi.Networks = [];
-          console.log(resp);
           Wifi.Scanning.hide();
-          var netSelect = document.getElementById('networks');
-          netSelect.removeAttribute('disabled');
-          netSelect.innerHTML =
-            '<option value="-1" disabled="disabled" selected="selected">Please select a network...</option>';
-
+          Wifi.Progress.hide();
+          var netList = document.getElementById('networklist');
+          netList.innerHTML = '';
           resp.forEach(function(net) {
             if (Wifi.SSIDs.indexOf(net.ssid) > -1) {
               return;
             }
-            var opt = document.createElement('option');
+            var item = document.createElement('li');
+            var strength = Wifi.rssiToStrength(net.rssi);
+            var i = Math.round((strength / 100) * 4);
             var authInt = parseInt(net.auth);
-            var imgLock =
-              'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCcgdmlld0JveD0iMCAwIDQ0OCA1MTIiPjxwYXRoIGZpbGw9IiMwMDAiIGQ9Ik00MDAgMjI0aC0yNHYtNzJDMzc2IDY4LjIgMzA3LjggMCAyMjQgMFM3MiA2OC4yIDcyIDE1MnY3Mkg0OGMtMjYuNSAwLTQ4IDIxLjUtNDggNDh2MTkyYzAgMjYuNSAyMS41IDQ4IDQ4IDQ4aDM1MmMyNi41IDAgNDgtMjEuNSA0OC00OFYyNzJjMC0yNi41LTIxLjUtNDgtNDgtNDh6bS0xMDQgMEgxNTJ2LTcyYzAtMzkuNyAzMi4zLTcyIDcyLTcyczcyIDMyLjMgNzIgNzJ2NzJ6IiBjbGFzcz0iIj48L3BhdGg+PC9zdmc+';
-            var imgUnlock =
-              'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCcgdmlld0JveD0iMCAwIDQ0OCA1MTIiPjxwYXRoIGZpbGw9IiMwMDAiIGQ9Ik00MDAgMjU2SDE1MlYxNTIuOWMwLTM5LjYgMzEuNy03Mi41IDcxLjMtNzIuOSA0MC0uNCA3Mi43IDMyLjEgNzIuNyA3MnYxNmMwIDEzLjMgMTAuNyAyNCAyNCAyNGgzMmMxMy4zIDAgMjQtMTAuNyAyNC0yNHYtMTZDMzc2IDY4IDMwNy41LS4zIDIyMy41IDAgMTM5LjUuMyA3MiA2OS41IDcyIDE1My41VjI1Nkg0OGMtMjYuNSAwLTQ4IDIxLjUtNDggNDh2MTYwYzAgMjYuNSAyMS41IDQ4IDQ4IDQ4aDM1MmMyNi41IDAgNDgtMjEuNSA0OC00OFYzMDRjMC0yNi41LTIxLjUtNDgtNDgtNDh6IiBjbGFzcz0iIj48L3BhdGg+PC9zdmc+';
-            var authIcon = authInt > 0 ? imgLock : imgUnlock;
             var authType = 'OPEN';
             if (authInt === 1) {
               authType = 'WEP';
@@ -81,19 +90,22 @@ var Wifi = {
             } else if (authInt === 5) {
               authType = 'WPA2/ENT';
             }
-            opt.title = authIcon;
-            opt.innerHTML =
-              Wifi.rssiToStrength(net.rssi) +
-              '% - ' +
-              net.ssid +
-              ' (' +
-              authType +
-              ')';
-            opt.value = net.ssid;
-            netSelect.appendChild(opt);
+
+            var authIcon = authInt > 0 ? locked[i] : unlocked[i];
+            item.innerHTML =
+              '<img src="' +
+              authIcon +
+              '" class="list-view-icon" />' +
+              net.ssid;
+            item.onclick = function() {
+              Wifi.selectNetwork(net.ssid);
+            };
+            netList.appendChild(item);
+
             Wifi.SSIDs.push(net.ssid);
             Wifi.Networks.push(net);
           });
+          Wifi.List.show();
         } else {
           Wifi.Scanning.hide();
           Wifi.Error.show('No networks found');
@@ -106,6 +118,8 @@ var Wifi = {
   Info: {},
   Scanning: {},
   Creds: {},
+  List: {},
+  Progress: {},
   rssiToStrength: function(rssi) {
     if (rssi === 0 || rssi <= -100) {
       quality = 0;
@@ -155,6 +169,7 @@ var Wifi = {
   },
   selectNetwork: function(network) {
     console.log(network);
+    Wifi.currentSSID = network;
     var userwrapper = document.getElementById('wuserwrapper');
     var passwrapper = document.getElementById('wpasswrapper');
     document.getElementById('wuser').value = '';
@@ -246,7 +261,7 @@ var Wifi = {
     Wifi.Buttons.disableAll();
   },
   test: function() {
-    var ssid = document.getElementById('networks').value;
+    var ssid = Wifi.currentSSID;
     var user = document.getElementById('wuser').value;
     var pass = document.getElementById('wpass').value;
     if (!ssid || ssid.length < 1) {
