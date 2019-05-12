@@ -16,7 +16,9 @@ char *s_ssid = NULL;
 char *s_pass = NULL;
 bool s_wifi_rpc_init = false;
 static int s_connection_retries = 0;
-bool s_timedout = false;
+bool b_sta_was_connected = false;
+static mgos_timer_id s_wifi_timer_id = MGOS_INVALID_TIMER_ID;
+bool b_connection_timedout = false;
 static struct mgos_config_wifi_sta *sp_test_sta_vals = NULL;
 static int check_counter = 0;
 static void remove_event_handlers(void);
@@ -77,7 +79,11 @@ static void check_connected_cb(void *arg)
   }
   free(connectedto);
 }
-
+static void wifi_connect_timer_cb(void *arg) {
+  LOG(LL_INFO, ("WiFi connection timed out"));
+  b_connection_timedout = true;
+  (void) arg;
+}
 static void mgos_wifi_save()
 {
   int sta_index = 0;
@@ -163,13 +169,14 @@ static void remove_event_handlers(void)
   mgos_event_remove_handler(MGOS_WIFI_EV_STA_IP_ACQUIRED, ip_acquired, NULL);
 }
 
-void mgos_wifi_setup_test(char *ssid, char *user, char *pass, void *userdata)
+void mgos_wifi_setup_test(char *ssid, char *user, char *pass, void *arg)
 {
 
-  //struct mg_rpc_request_info *ri = (struct mg_rpc_request_info *)userdata;
+  struct mg_rpc_request_info *ri = (struct mg_rpc_request_info *)arg;
 
   if (mgos_conf_str_empty(ssid))
   {
+    mg_rpc_send_errorf(ri, 400, "SSID is required");
     return false;
   }
 
@@ -187,19 +194,53 @@ void mgos_wifi_setup_test(char *ssid, char *user, char *pass, void *userdata)
   sp_test_sta_vals->ca_cert = "";
   LOG(LL_INFO, ("Testing Wifi setup, SSID: %s, USER: %s, PASS: %s", ssid, user, pass));
 
-  remove_event_handlers();
+  //remove_event_handlers();
 
   mgos_wifi_disconnect();
   if (!mgos_wifi_setup_sta(sp_test_sta_vals))
   {
-    //mg_rpc_send_errorf(ri, 400, "STA Config invalid");
+    mg_rpc_send_errorf(ri, 400, "STA Config invalid");
     return false;
   }
-  add_event_handlers();
+  //add_event_handlers();
 
-  mgos_wifi_connect();
+mgos_wifi_connect();
+  b_connection_timedout = false;
 
-  mgos_set_timer(1000, MGOS_TIMER_REPEAT, check_connected_cb, NULL);
+    int connect_timeout = 30; //mgos_sys_config_get_provision_wifi_timeout();
+      s_wifi_timer_id = mgos_set_timer(connect_timeout * 1000, 0, wifi_connect_timer_cb, NULL);
+
+  int i = 0;
+  enum mgos_wifi_status sta_status = mgos_wifi_get_status();
+  while(sta_status < 2 && !b_connection_timedout){
+    sta_status = mgos_wifi_get_status();
+    LOG(LL_INFO,("WiFi status: %d", sta_status));
+    switch (sta_status) {
+      case MGOS_WIFI_DISCONNECTED:
+        b_sta_was_connected = false;
+        LOG( LL_INFO, ( "WiFi not currently connected to any STA" ) );
+        break;
+      case MGOS_WIFI_CONNECTING:
+        b_sta_was_connected = false;
+        LOG( LL_INFO, ( "WiFi CONNECTING to STA..." ) );
+        break;
+      case MGOS_WIFI_CONNECTED:
+        b_sta_was_connected = true;
+        LOG( LL_INFO, ( "WiFi CONNECTED to STA %s", ssid ? ssid : "unknown" ) );
+        mg_rpc_send_responsef(ri, "{ result: %B }", true);
+        break;
+      case MGOS_WIFI_IP_ACQUIRED:
+        b_sta_was_connected = true;
+        LOG( LL_INFO, ( "Provision WiFi IP ACQUIRED from existing STA %s", ssid ? ssid : "unknown" ) );
+        break;
+    }
+  i++;
+  }
+  if(!b_sta_was_connected){
+    mg_rpc_send_errorf(ri, 401, "Could not connect to %s", ssid);
+  }
+
+  //mgos_set_timer(1000, MGOS_TIMER_REPEAT, check_connected_cb, NULL);
 }
 
 static void mgos_wifi_test_rpc_handler(struct mg_rpc_request_info *ri, void *cb_arg,
@@ -218,12 +259,12 @@ static void mgos_wifi_test_rpc_handler(struct mg_rpc_request_info *ri, void *cb_
     free(ssid);
     free(pass);
     free(user);
-    mg_rpc_send_errorf(ri, 400, "SSID is required!");
+    mg_rpc_send_errorf(ri, 400, "SSID is required");
     return;
   }
 
-  LOG(LL_INFO, ("Wifi.Test RPC Handler ssid: %s, user: %s, pass: %s", ssid, user, pass));
-  mgos_wifi_setup_test(ssid, user, pass, NULL);
+  //LOG(LL_INFO, ("Wifi.Test RPC Handler ssid: %s, user: %s, pass: %s", ssid, user, pass));
+  mgos_wifi_setup_test(ssid, user, pass, ri);
 
   free(ssid);
   free(pass);

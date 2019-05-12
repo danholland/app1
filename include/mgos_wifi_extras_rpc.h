@@ -50,7 +50,7 @@ extern "C"
  * @return true 
  * @return false 
  */
-  void mgos_wifi_setup_test(char *ssid, char *user, char *pass, void *userdata);
+  void mgos_wifi_setup_test(char *ssid, char *user, char *pass, void *arg);
 
 #ifdef __cplusplus
 }

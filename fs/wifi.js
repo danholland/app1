@@ -277,7 +277,7 @@ var Wifi = {
       'POST',
       'Wifi.Test',
       'Attempting to connect...',
-      { ssid: ssid, pass: '$uperHer0e$', user: user },
+      { ssid: ssid, pass: 'Shamp001Goose', user: user },
       function(resp) {
         console.log(resp);
         return;
